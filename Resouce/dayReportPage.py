@@ -9,10 +9,10 @@ class DayReport(LotteryDraw):
     日报表
     """
     #日报表地址
-    day_url="http://www.mochen111.net/static/sobet/agencyCenter.html#dayReport"
+    day_url="static/sobet/agencyCenter.html#dayReport"
     #跳转到日报表
     def goto_dayReport(self):
-        self.open_url(self.day_url)
+        self.open_url(self.base_url+self.day_url)
     #日投注数据
     dayBettingData=(By.XPATH,'//*[@id="admin_report"]/div[2]/div[4]/ul[2]/li[1]/span[2]')
     #获取日投注数据

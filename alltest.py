@@ -14,7 +14,7 @@ discover = unittest.defaultTestLoader.discover(dir,
 for test_suite in discover:
     suite.addTests(test_suite)
 
-now=time.strftime("%Y%m%d_%H%M%S")
+now=time.strftime("%Y%m%d_%H%M")
 filename = "E:\\test001\\Result\\reports\\"+now+".html"  # 定义测试报告存放路径
 fp = open(filename, 'wb')  # r只读   wb:读写
 # 定义测试报告

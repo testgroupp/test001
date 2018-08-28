@@ -1,16 +1,16 @@
 #coding=utf-8
 
-from Resouce.baseobject import BaseObject
+from Resouce.loginPage import LoginPage
 from selenium.webdriver.common.by import By
-import time,random
-class Betting(BaseObject):
+import time
+class Betting(LoginPage):
     """
     彩票投注相关 共用元素及方法
     """
     #主页地址
-    url = "http://www.mochen111.net/"
-    #个人中心——游戏启示——彩票投注地地
-    url_cpBetting="http://www.mochen111.net/static/sobet/personalCenter.html#lottery"
+    # base_url = "http://www.mochen111.net/"
+    #个人中心——游戏记录——彩票投注地址
+    url_cpBetting="static/sobet/personalCenter.html#lottery"
 
     #快速投注按钮
     quickSubmit_btn=(By.LINK_TEXT,"快速投注")
@@ -52,7 +52,7 @@ class Betting(BaseObject):
     OpenAlert=(By.XPATH,'//*[@class="js-issue-wrap issue fl"]/div[2]/span[not(text())]')
     #等待开盘
     def waitOpen(self):
-        self.is_visible(30,self.OpenAlert)
+        self.is_exit(30,self.OpenAlert)
 
     #点击快速投注按钮
     def click_quickSubmint_btn(self):
@@ -86,5 +86,5 @@ class Betting(BaseObject):
         cp=self.driver.find_element(By.XPATH,"//div[text()='%s']" %(cpGame))
         dlt=cp.get_attribute("data-lt")
         dcls=cp.get_attribute("data-lt-cls")
-        url_cp=self.url+"lottery#"+dcls+"-"+dlt
+        url_cp=self.base_url+"lottery#"+dcls+"-"+dlt
         return url_cp

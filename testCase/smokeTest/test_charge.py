@@ -1,6 +1,5 @@
 # coding=utf-8
 from selenium import webdriver
-from Resouce.loginPage import LoginPage
 from Resouce.chargePage import ChargePage
 import unittest
 
@@ -10,10 +9,8 @@ class TestCharge(unittest.TestCase):
 
     def test_charge(self):
         '''充值'''
-        login1=LoginPage(self.driver)
-        login1.login()
-
         charge1=ChargePage(self.driver)
+        charge1.login()
         charge1.goto_charge()
         text1=charge1.get_bankName()
         charge1.charge()

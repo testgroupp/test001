@@ -1,14 +1,14 @@
 #coding=utf-8
 
-from Resouce.baseobject import BaseObject
+from Resouce.betting import Betting
 from selenium.webdriver.common.by import By
 import time,random
-class Withdraw(BaseObject):
+class Withdraw(Betting):
     """
     提现页面
     """
     #提现页面地址
-    withdraw_url="http://www.mochen111.net/static/sobet/transaction-center.html#withdraw"
+    withdraw_url="static/sobet/transaction-center.html#withdraw"
     #提现金额输入框
     withdrawMoney_input=(By.ID,"withdrawMoney")
     #资金密码输入框
@@ -30,7 +30,7 @@ class Withdraw(BaseObject):
         return self.get_text(self.alert)
     #跳转到提现页面
     def goto_withdraw(self):
-        self.open_url(self.withdraw_url)
+        self.open_url(self.base_url+self.withdraw_url)
     #输入提现金额
     def input_withdrawMoney(self):
         self.send_keys_text(self.withdrawMoney_input,self.get_minMoney())

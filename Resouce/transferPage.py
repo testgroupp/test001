@@ -1,9 +1,9 @@
 #coding=utf-8
 
-from Resouce.baseobject import BaseObject
+from Resouce.betting import Betting
 from selenium.webdriver.common.by import By
 import time,random
-class TransferPage(BaseObject):
+class TransferPage(Betting):
     """
     转账页面
     """
@@ -27,13 +27,13 @@ class TransferPage(BaseObject):
     submintNow_btn=(By.XPATH,"//*[@class='btn submit-btn']")
 
     #转账页面地址
-    transfer_url="http://www.mochen111.net/static/sobet/transaction-center.html#transfer"
+    transfer_url="static/sobet/transaction-center.html#transfer"
     #提示框
     alert=(By.XPATH,'/html/body/div[contains(@style,"position: fixed; outline: 0px; left")]/div/table/tbody/tr[2]/td/div')
 
     #跳转到转账页面
     def goto_tranfer(self):
-        self.open_url(self.transfer_url)
+        self.open_url(self.base_url+self.transfer_url)
         time.sleep(2)
 
     #选择转出钱包：彩票钱包

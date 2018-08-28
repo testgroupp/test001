@@ -1,6 +1,5 @@
 # coding=utf-8
 from selenium import webdriver
-from Resouce.loginPage import LoginPage
 from Resouce.promotePage import Promote
 import unittest,time
 
@@ -9,10 +8,8 @@ class TestPromote(unittest.TestCase):
         self.driver = webdriver.Chrome()
     def test_promote(self):
         '''推广链接'''
-        login1 = LoginPage(self.driver)
-        login1.login()
-
         pt=Promote(self.driver)
+        pt.login()
         pt.promote()
         msg=pt.get_text(pt.linkAlert)
         # msg="test"

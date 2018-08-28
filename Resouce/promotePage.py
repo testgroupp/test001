@@ -1,17 +1,17 @@
 #coding=utf-8
 
-from Resouce.baseobject import BaseObject
+from Resouce.betting import Betting
 from selenium.webdriver.common.by import By
 import time,random,string
-class Promote(BaseObject):
+class Promote(Betting):
     """
     推广页面
     """
     #注册页面地址
-    reg_url="http://www.mochen111.net/static/sobet/agencyCenter.html#link"
+    reg_url="static/sobet/agencyCenter.html#link"
     #跳转到推广页面
     def goto_promote(self):
-        self.open_url(self.reg_url)
+        self.open_url(self.base_url+self.reg_url)
     #添加按钮
     addLink_btn=(By.XPATH,"//*[@class='addLink']")
     #点击添加按钮

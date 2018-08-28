@@ -1,18 +1,15 @@
 # coding=utf-8
 from selenium import webdriver
-from Resouce.loginPage import LoginPage
 from Resouce.regPage import Reg
-import unittest,time
+import unittest
 
 class TestReg(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
     def test_reg(self):
         '''注册'''
-        login1 = LoginPage(self.driver)
-        login1.login()
-
         rg=Reg(self.driver)
+        rg.login()
         rg.reg()
         msg=rg.get_text(rg.regAlert)
         # msg="test"

@@ -94,6 +94,19 @@ class BaseObject(object):
         except Exception as e:
             print(e)
 
+    def is_exit(self,timeout,loc):
+        """
+        等待元素加载到dom树中
+        :param timeout: 超时
+        :param loc: 定位
+        :return:
+        """
+        try:
+            WebDriverWait(self.driver,timeout,0.5).until(
+                EC.presence_of_element_located(loc))
+        except:
+            pass
+
     def is_not_visble(self,timeout,loc):
         """
         等待元素消失

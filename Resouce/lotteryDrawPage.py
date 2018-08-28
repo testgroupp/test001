@@ -28,13 +28,10 @@ class LotteryDraw(Bet):
 
     #开奖流程
     def lotteryDraw(self):
-        self.bettingAll(9)
+        self.choiceAll(9)
         self.click_quickSubmint_btn()
         time.sleep(0.5)
         self.click_ok_btn()
         self.wait_alertToBeVisble()
         time.sleep(2)
         self.waitToLotteryDraw()
-
-
-

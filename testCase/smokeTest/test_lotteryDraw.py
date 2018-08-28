@@ -1,6 +1,5 @@
 # coding=utf-8
 from selenium import webdriver
-from Resouce.loginPage import LoginPage
 from Resouce.lotteryDrawPage import LotteryDraw
 import unittest,time
 
@@ -9,10 +8,8 @@ class TestLotteryDraw(unittest.TestCase):
         self.driver = webdriver.Chrome()
     def test_lotteryDraw(self):
         '''开奖：腾讯分分彩-后三-复式'''
-        login1 = LoginPage(self.driver)
-        login1.login()
-
         ld=LotteryDraw(self.driver)
+        ld.login()
         ld.lotteryDraw()
         num1=ld.get_bonusNum()
         # num1=56

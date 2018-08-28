@@ -1,6 +1,5 @@
 # coding=utf-8
 from selenium import webdriver
-from Resouce.loginPage import LoginPage
 from Resouce.txffcPage import Bet
 import unittest,time
 
@@ -9,11 +8,9 @@ class TestBetting(unittest.TestCase):
         self.driver = webdriver.Chrome()
     def test_betting(self):
         '''下注：腾讯分分彩-后三-复式'''
-        login1 = LoginPage(self.driver)
-        login1.login()
-
         bet1=Bet(self.driver)
-        bet1.betting(9)
+        bet1.login()
+        bet1.choiceNumer(9)
         bet1.click_quickSubmint_btn()
         time.sleep(0.5)
         bet1.click_ok_btn()
@@ -28,7 +25,7 @@ class TestBetting(unittest.TestCase):
         time.sleep(2)
         bet1.click_theNewestTime()
         bid1=bet1.get_bettingId()
-        bet1.open_url(bet1.url_cpBetting)
+        bet1.open_url(bet1.base_url+bet1.url_cpBetting)
         bet1.click_theFirstTime()
         bid2=bet1.get_bettingId()
         print("bid1:",bid1,"\nbid2:",bid2)

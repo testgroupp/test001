@@ -29,7 +29,7 @@ class OrderCancel(Bet):
     rewordConditon=(By.XPATH,'//*[@id="lottery"]/div[11]/div/ul/li[1]/span[8]')
     #撤单流程
     def orderCancel(self):
-        self.betting(25)
+        self.choiceNumer(25)
         self.click_quickSubmint_btn()
         time.sleep(0.5)
         self.click_ok_btn()

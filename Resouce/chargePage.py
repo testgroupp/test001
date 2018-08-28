@@ -1,9 +1,9 @@
 #coding=utf-8
 
-from Resouce.baseobject import BaseObject
+from Resouce.betting import Betting
 from selenium.webdriver.common.by import By
 import time,random
-class ChargePage(BaseObject):
+class ChargePage(Betting):
     """
     充值页面
     """
@@ -16,11 +16,11 @@ class ChargePage(BaseObject):
     #充值金额
     money=random.randint(6,100)
     #充值页面地址
-    charge_url="http://www.mochen111.net/static/sobet/transaction-center.html#recharge"
+    charge_url="static/sobet/transaction-center.html#recharge"
 
     #跳转到充值页面
     def goto_charge(self):
-        self.open_url(self.charge_url)
+        self.open_url(self.base_url+self.charge_url)
 
     #获取第一个银行标签名称
     def get_bankName(self):

@@ -14,8 +14,8 @@ class LoginPage(BaseObject):
     pasword_input=(By.ID,"password")
     #登录按钮
     login_btn=(By.XPATH,"//*[@class='btn fr']")
-    #摩臣前台地址
-    url="http://www.mochen111.net/"
+    #前台地址
+    base_url="http://www.mochen111.net/"
     #用户名
     username = "delf001"
     #密码
@@ -35,9 +35,8 @@ class LoginPage(BaseObject):
 
     #用户登录
     def login(self):
-        self.open_url(self.url)
+        self.open_url(self.base_url)
         self.input_unsername(self.username)
         self.input_password(self.password)
         self.click_loginbtn()
         time.sleep(2)
-

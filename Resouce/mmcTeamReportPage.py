@@ -9,11 +9,11 @@ class MmcTeamReport(WBGMmc):
     秒秒彩团队报表
     """
     # 团队报表地址
-    team_url = "http://www.mochen111.net/static/sobet/agencyCenter.html#searchteam"
+    team_url = "static/sobet/agencyCenter.html#searchteam"
 
     # 跳转到团队报表
     def goto_teamReport(self):
-        self.open_url(self.team_url)
+        self.open_url(self.base_url+self.team_url)
 
     # 投注数据
     teamBettingData = (By.XPATH, '//*[@id="admin_report"]/div[1]/div[5]/ul[2]/li[1]/span[2]')

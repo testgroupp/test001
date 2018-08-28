@@ -1,6 +1,5 @@
 # coding=utf-8
 from selenium import webdriver
-from Resouce.loginPage import LoginPage
 from Resouce.dayReportPage import DayReport
 import unittest
 
@@ -9,10 +8,8 @@ class TestDayReport(unittest.TestCase):
         self.driver = webdriver.Chrome()
     def test_dayReport(self):
         '''日报表'''
-        login1 = LoginPage(self.driver)
-        login1.login()
-
         dr=DayReport(self.driver)
+        dr.login()
         dr.check_dayReport()
 
     def tearDown(self):
