@@ -12,14 +12,16 @@ class TestCharge(unittest.TestCase):
         charge1=ChargePage(self.driver)
         charge1.login()
         charge1.goto_charge()
-        text1=charge1.get_bankName()
         charge1.charge()
-        text2 = self.driver.title
+        text = self.driver.title
+        print("支付渠道：",text)
         try:
-            self.assertIn(text1,text2)
+            self.assertNotIn("摩臣",text)
+            self.assertNotIn("摩登",text)
         except:
             charge1.get_screenshot()
-            self.assertIn(text1, text2)
+            self.assertNotIn("摩臣", text)
+            self.assertNotIn("摩登", text)
 
     def tearDown(self):
         self.driver.quit()

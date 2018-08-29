@@ -18,7 +18,7 @@ class WBGMmc(Betting):
         self.click_hou3()
         for i in range(1, 4):
             j = random.randint(1, 10)
-            self.driver.find_element(By.XPATH, '//*[@id="lottery"]/div[7]/div/dl[%d]/dd/i[%d]' % (i, j)).click()
+            self.driver.find_element(By.XPATH, '//*[@id="lottery"]/div[contains(@class,"js-number")]/div/dl[%d]/dd/i[%d]' % (i, j)).click()
     #后三
     hou3=(By.XPATH,'//*[text()="后三"]')
     #点击后三
@@ -28,7 +28,7 @@ class WBGMmc(Betting):
     moretimes_btn=(By.XPATH,'//*[text()="再玩一次"]')
     #等待再玩一次按钮出现
     def waitMoretimesBtnToBeVisable(self):
-        self.is_visible(30,self.moretimes_btn)
+        self.is_visible(200,self.moretimes_btn)
     #取消按钮
     cancel_btn=(By.XPATH,'//*[text()="取消"]')
     #点击取消按钮
@@ -38,6 +38,7 @@ class WBGMmc(Betting):
 
     #秒秒彩下注流程
     def wbgMmcBetting(self):
+        self.open_url(self.base_url)
         self.goto_wbgMmc()
         self.choiceNumber()
         self.click_quickSubmint_btn()

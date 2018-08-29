@@ -16,8 +16,8 @@ class TransferPage(Betting):
 
     #转入钱包下拉框
     turnInSelect=(By.ID,"turnIn")
-    #PT钱包
-    turnIn_ag=(By.XPATH,"//*[@id='turnIn']//*[text()='PT钱包']")
+    #AG钱包
+    turnIn_ag=(By.XPATH,"//*[@id='turnIn']//*[text()='AG钱包']")
     #现有全额文本框
     inBalance_text=(By.ID,"inBalance")
 
@@ -46,6 +46,7 @@ class TransferPage(Betting):
         self.click_element(self.turnInSelect)
         time.sleep(2)
         self.click_element(self.turnIn_ag)
+
     '''
     #输入转账金额
     def input_transfer(self):
@@ -74,7 +75,6 @@ class TransferPage(Betting):
         self.selectTurnOut()
         self.selectTurnIn()
         time.sleep(2)
-
 
 
 

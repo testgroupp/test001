@@ -77,14 +77,14 @@ class Betting(LoginPage):
         self.click_element(self.theFirstTime)
         time.sleep(1)
 
-    def get_cpGameUrl(self,cpGame):
-        """
-        获取彩票游戏地址
-        :param cpGame: 彩票游戏名称
-        :return:
-        """
-        cp=self.driver.find_element(By.XPATH,"//div[text()='%s']" %(cpGame))
-        dlt=cp.get_attribute("data-lt")
-        dcls=cp.get_attribute("data-lt-cls")
-        url_cp=self.base_url+"lottery#"+dcls+"-"+dlt
-        return url_cp
+    # def get_cpGameUrl(self,cpGame):
+    #     """
+    #     获取彩票游戏地址
+    #     :param cpGame: 彩票游戏名称
+    #     :return:
+    #     """
+    #     cp=self.driver.find_element(By.XPATH,"//div[text()='%s']" %(cpGame))
+    #     dlt=cp.get_attribute("data-lt")
+    #     dcls=cp.get_attribute("data-lt-cls")
+    #     url_cp=self.base_url+"lottery#"+dcls+"-"+dlt
+    #     return url_cp
