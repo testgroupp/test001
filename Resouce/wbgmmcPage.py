@@ -15,6 +15,7 @@ class WBGMmc(Betting):
 
     #机选一注：后三复式
     def choiceNumber(self):
+        self.goto_wbgMmc()
         self.click_hou3()
         for i in range(1, 4):
             j = random.randint(1, 10)
@@ -39,7 +40,6 @@ class WBGMmc(Betting):
     #秒秒彩下注流程
     def wbgMmcBetting(self):
         self.open_url(self.base_url)
-        self.goto_wbgMmc()
         self.choiceNumber()
         self.click_quickSubmint_btn()
         time.sleep(0.5)

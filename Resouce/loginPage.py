@@ -53,7 +53,8 @@ class LoginPage(BaseObject):
             dcls=cp.get_attribute("data-lt-cls")
             url_cp=self.base_url+"lottery#"+dcls+"-"+dlt
         else:
-            cp=self.driver.find_element(By.XPATH,"//*[text()='%s']/.." %(cpGame))
+            cp=self.driver.find_element(By.XPATH,"//*[@class='lottery-text' and text()='%s']/.." %(cpGame))
             url_cp=cp.get_attribute("href")
+
         print(url_cp)
         return url_cp

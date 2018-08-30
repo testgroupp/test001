@@ -18,14 +18,27 @@ class Bet(Betting):
         t=self.turnToSeconds()
         if t<=seconds:
             time.sleep(t+5)
-            for i in range(1,4):
-                j=random.randint(1,10)
-                self.driver.find_element(By.XPATH, '//*[@id="lottery"]/div[7]/div/dl[%d]/dd/i[%d]' % (i, j)).click()
+            self.click_houSan()
+            # 获取所有选号集合
+            all_numbers = self.driver.find_elements(By.XPATH,'//*[@id="lottery"]/div[contains(@class,"js-number")]/div/dl[@rel="selectNum"]/dd/i')
+            all_numbers[random.randint(0,9)].click()
+            all_numbers[random.randint(10,19)].click()
+            all_numbers[random.randint(20,29)].click()
         else:
-            for i in range(1,4):
-                j=random.randint(1,10)
-                self.driver.find_element(By.XPATH, '//*[@id="lottery"]/div[7]/div/dl[%d]/dd/i[%d]' % (i, j)).click()
+            self.click_houSan()
+            # 获取所有选号集合
+            all_numbers = self.driver.find_elements(By.XPATH,'//*[@id="lottery"]/div[contains(@class,"js-number")]/div/dl[@rel="selectNum"]/dd/i')
+            all_numbers[random.randint(0,9)].click()
+            all_numbers[random.randint(10,19)].click()
+            all_numbers[random.randint(20,29)].click()
+        time.sleep(1)
 
+    #后三选项
+    houSan=(By.XPATH,"//*[text()='后三']")
+    #点击后三
+    def click_houSan(self):
+        self.click_element(self.houSan)
+        time.sleep(1)
     # 三个全选按钮
     selectAll_btn = (By.XPATH, '//*[text()="全"]')
 

@@ -19,7 +19,7 @@ class TestOrderCancel(unittest.TestCase):
             oc.get_screenshot()
             self.assertEqual("撤单成功",msg)
         time.sleep(2)
-        msg=oc.get_text(oc.rewordConditon)
+        msg=oc.get_bt_con()
         print("中奖情况：",msg)
         try:
             self.assertEqual("个人撤单",msg)

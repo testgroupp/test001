@@ -17,8 +17,20 @@ class Betting(LoginPage):
     #提示框确定按钮
     ok_btn=(By.XPATH,'//*[@i-id="lt_ok"]')
     #提交订单提示框
-    # submit_alert=(By.ID,"content:lottery_submit")
     submit_alert = (By.XPATH, '//*[@id="content:lottery_submit"]')
+
+    # 添加选号按钮
+    addNumber_btn = (By.LINK_TEXT, '添加选号')
+    # 点击添加选号按钮
+    def click_aaNumber_btn(self):
+        self.click_element(self.addNumber_btn)
+        time.sleep(1)
+    #立即投注按钮
+    submit_now_btn=(By.LINK_TEXT,"立即投注")
+    #点击立即投注
+    def click_submit_now_btn(self):
+        self.click_element(self.submit_now_btn)
+        time.sleep(0.5)
 
     #投注记录最新一条投注信息：参与时间
     theNewestTime = (By.XPATH, '//*[@class="js-recency-list"]/li[1]/span[1]')
@@ -27,11 +39,11 @@ class Betting(LoginPage):
     #个人中心-游戏记录中第一条注单信息：投注时间
     theFirstTime=(By.XPATH,'//*[@id="admin_history"]/div[3]/div[4]/ul/li[1]/span[1]')
     #小时定位
-    h=(By.XPATH,"//div[@class='js-clock clock cl-count']/b[1]")
+    h=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[1]")
     #分钟定位
-    m=(By.XPATH,"//div[@class='js-clock clock cl-count']/b[2]")
+    m=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[2]")
     #秒定位
-    s=(By.XPATH,"//div[@class='js-clock clock cl-count']/b[3]")
+    s=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[3]")
     #获取小时数
     def getHours(self):
         return int(self.get_text(self.h))
@@ -49,10 +61,11 @@ class Betting(LoginPage):
         t=hours*60*60+minites*60+seconds
         return t
     #开售提示:空文本
-    OpenAlert=(By.XPATH,'//*[@class="js-issue-wrap issue fl"]/div[2]/span[not(text())]')
+    # OpenAlert=(By.XPATH,'//*[@class="js-issue-wrap issue fl"]/div[2]/span[not(text())]')
+    OpenAlert=(By.XPATH,'//*text()="等待开售"')
     #等待开盘
     def waitOpen(self):
-        self.is_exit(30,self.OpenAlert)
+        self.is_not_visble(30,self.OpenAlert)
 
     #点击快速投注按钮
     def click_quickSubmint_btn(self):
@@ -76,15 +89,3 @@ class Betting(LoginPage):
     def click_theFirstTime(self):
         self.click_element(self.theFirstTime)
         time.sleep(1)
-
-    # def get_cpGameUrl(self,cpGame):
-    #     """
-    #     获取彩票游戏地址
-    #     :param cpGame: 彩票游戏名称
-    #     :return:
-    #     """
-    #     cp=self.driver.find_element(By.XPATH,"//div[text()='%s']" %(cpGame))
-    #     dlt=cp.get_attribute("data-lt")
-    #     dcls=cp.get_attribute("data-lt-cls")
-    #     url_cp=self.base_url+"lottery#"+dcls+"-"+dlt
-    #     return url_cp
