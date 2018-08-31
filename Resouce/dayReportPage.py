@@ -40,15 +40,27 @@ class DayReport(LotteryDraw):
         self.goto_dayReport()
         data1=self.get_dayBettingData()
         self.open_url(self.base_url)
-        self.lotteryDraw()
+        # self.lotteryDraw()
+        self.choiceNumer(9)
+        self.click_aaNumber_btn()
+        self.dt_alter()
+        time.sleep(1)
+        betM=self.get_betMoney()
+        print("投注金额",betM)
+        self.click_submit_now_btn()
+        time.sleep(0.5)
+        self.click_ok_btn()
+        self.wait_alertToBeVisble()
         time.sleep(2)
+        self.waitToLotteryDraw()
+
         self.goto_dayReport()
         data2=self.get_dayBettingData()
         print("data1:",data1,"\ndata2:",data2)
         try:
-            assert(data2==data1+2000)
+            assert(data2==data1+betM)
         except:
             self.get_screenshot()
-            assert(data2==data1+2000)
+            assert(data2==data1+betM)
 
 

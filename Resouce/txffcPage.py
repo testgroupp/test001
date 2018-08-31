@@ -19,6 +19,7 @@ class Bet(Betting):
         if t<=seconds:
             time.sleep(t+5)
             self.click_houSan()
+            self.click_minbet()
             # 获取所有选号集合
             all_numbers = self.driver.find_elements(By.XPATH,'//*[@id="lottery"]/div[contains(@class,"js-number")]/div/dl[@rel="selectNum"]/dd/i')
             all_numbers[random.randint(0,9)].click()
@@ -26,6 +27,7 @@ class Bet(Betting):
             all_numbers[random.randint(20,29)].click()
         else:
             self.click_houSan()
+            self.click_minbet()
             # 获取所有选号集合
             all_numbers = self.driver.find_elements(By.XPATH,'//*[@id="lottery"]/div[contains(@class,"js-number")]/div/dl[@rel="selectNum"]/dd/i')
             all_numbers[random.randint(0,9)].click()
@@ -49,8 +51,12 @@ class Bet(Betting):
         t=self.turnToSeconds()
         if t<=seconds:
             time.sleep(t+5)
+            self.click_houSan()
+            self.click_minbet()
             self.click_elements(self.selectAll_btn)
         else:
+            self.click_houSan()
+            self.click_minbet()
             self.click_elements(self.selectAll_btn)
 
 

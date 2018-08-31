@@ -22,7 +22,7 @@ class TransferPage(Betting):
     inBalance_text=(By.ID,"inBalance")
 
     #转账金额输入框
-    transfer_input=(By.ID,"cash")
+    transfer_input=(By.ID,"agcash")
     #立即转入按钮
     submintNow_btn=(By.XPATH,"//*[@class='btn submit-btn']")
 

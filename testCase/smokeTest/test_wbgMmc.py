@@ -11,6 +11,7 @@ class TestWBGMmc(unittest.TestCase):
         wbg=WBGMmc(self.driver)
         wbg.login()
         wbg.wbgMmcBetting()
+        wbg.click_cancel_btn()
         wbg.click_theNewestTime()
         bid1 = wbg.get_bettingId()
         wbg.open_url(wbg.base_url+wbg.url_cpBetting)

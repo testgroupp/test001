@@ -12,25 +12,47 @@ class Betting(LoginPage):
     #个人中心——游戏记录——彩票投注地址
     url_cpBetting="static/sobet/personalCenter.html#lottery"
 
+    #最小投注单位
+    minbet=(By.XPATH,'//*[@id="lottery"]//span[contains(@class,"mode")]/label[last()]')
+    #点击最小投注单位
+    def click_minbet(self):
+        self.click_element(self.minbet)
     #快速投注按钮
     quickSubmit_btn=(By.LINK_TEXT,"快速投注")
     #提示框确定按钮
     ok_btn=(By.XPATH,'//*[@i-id="lt_ok"]')
     #提交订单提示框
     submit_alert = (By.XPATH, '//*[@id="content:lottery_submit"]')
-
     # 添加选号按钮
     addNumber_btn = (By.LINK_TEXT, '添加选号')
     # 点击添加选号按钮
     def click_aaNumber_btn(self):
         self.click_element(self.addNumber_btn)
         time.sleep(1)
+    #单挑提示框中的确定按钮
+    dt_alter_ok_btn=(By.XPATH,'//*[contains(@i-id,"_ok")]')
+    #点击单挑提示框中确定按钮
+    def click_dt_alter_ok_btn(self):
+        self.click_element(self.dt_alter_ok_btn)
+    #单挑提示框处理
+    def dt_alter(self):
+        try:
+            self.click_dt_alter_ok_btn()
+        except:
+            pass
+    #投注金额
+    betMoney=(By.XPATH,'//li[@data-type="hsm_zx_fs"]//div[contains(@class,"money")]')
+
+    #获取投注金额
+    def get_betMoney(self):
+        return float(self.get_text(self.betMoney))
     #立即投注按钮
     submit_now_btn=(By.LINK_TEXT,"立即投注")
     #点击立即投注
     def click_submit_now_btn(self):
         self.click_element(self.submit_now_btn)
-        time.sleep(0.5)
+        time.sleep(1)
+
 
     #投注记录最新一条投注信息：参与时间
     theNewestTime = (By.XPATH, '//*[@class="js-recency-list"]/li[1]/span[1]')
@@ -38,6 +60,8 @@ class Betting(LoginPage):
     bettingId=(By.XPATH,'//*[@id="content:recency-details"]/table/tbody/tr[1]/td/em')
     #个人中心-游戏记录中第一条注单信息：投注时间
     theFirstTime=(By.XPATH,'//*[@id="admin_history"]/div[3]/div[4]/ul/li[1]/span[1]')
+
+
     #小时定位
     h=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[1]")
     #分钟定位
@@ -60,6 +84,10 @@ class Betting(LoginPage):
         seconds=self.getSeconds()
         t=hours*60*60+minites*60+seconds
         return t
+
+
+
+
     #开售提示:空文本
     # OpenAlert=(By.XPATH,'//*[@class="js-issue-wrap issue fl"]/div[2]/span[not(text())]')
     OpenAlert=(By.XPATH,'//*text()="等待开售"')
@@ -70,6 +98,7 @@ class Betting(LoginPage):
     #点击快速投注按钮
     def click_quickSubmint_btn(self):
         self.click_element(self.quickSubmit_btn)
+        time.sleep(1)
     #点击弹框中确定按钮
     def click_ok_btn(self):
         self.click_element(self.ok_btn)

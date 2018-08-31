@@ -35,12 +35,13 @@ class MmcTeamReport(WBGMmc):
         self.goto_teamReport()
         data1 = self.get_teamBettingData()
         self.wbgMmcBetting()
-        time.sleep(2)
+        mmc_M=self.get_mmcBetM()
+        print("秒秒彩投注金额：",mmc_M)
         self.goto_teamReport()
         data2 = self.get_teamBettingData()
         print("data1:", data1, "\ndata2:", data2)
         try:
-            assert (data2 == data1 + 10)
+            assert (data2 == data1 + mmc_M)
         except:
             self.get_screenshot()
-            assert (data2 == data1 + 10)
+            assert (data2 == data1 + mmc_M)

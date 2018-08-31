@@ -12,8 +12,8 @@ class LotteryDraw(Bet):
     bonus=(By.XPATH,'//span[contains(@class,"odds")]/select/option[1]')
     #获取奖金数额
     def get_bonusNum(self):
-        return float(self.get_element(self.bonus).get_attribute("value"))
-    #
+        return self.get_element(self.bonus).get_attribute("value")
+
     #第一条投注记录中奖情况文本
     theFirtStatu=(By.XPATH,'//ul[@class="js-recency-list"]/li[1]//*[text()="未开奖"]')
     #开奖后的第一条投注记录
@@ -32,6 +32,7 @@ class LotteryDraw(Bet):
         # self.open_url(self.base_url)
         self.choiceAll(9)
         self.click_aaNumber_btn()
+        self.dt_alter()
         self.click_submit_now_btn()
         time.sleep(0.5)
         self.click_ok_btn()

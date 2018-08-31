@@ -13,10 +13,18 @@ class WBGMmc(Betting):
     def goto_wbgMmc(self):
         self.open_url(self.get_cpGameUrl("WBG秒秒彩"))
 
+    # 选择分投注
+    fenbet = (By.XPATH, '//*[@id="lottery"]//span[contains(@class,"mode")]/label[@for="modeRadio3"]')
+
+    # 点击分投注
+    def click_fnebet(self):
+        self.click_element(self.fenbet)
+
     #机选一注：后三复式
     def choiceNumber(self):
         self.goto_wbgMmc()
         self.click_hou3()
+        self.click_fnebet()
         for i in range(1, 4):
             j = random.randint(1, 10)
             self.driver.find_element(By.XPATH, '//*[@id="lottery"]/div[contains(@class,"js-number")]/div/dl[%d]/dd/i[%d]' % (i, j)).click()
@@ -37,12 +45,21 @@ class WBGMmc(Betting):
         self.click_element(self.cancel_btn)
         time.sleep(0.5)
 
+    #投注金额
+    mmc_betM=(By.XPATH,'//*[@id="content:mmc_loop_box"]/div[1]/ul/li/span[4]')
+    #投注次数
+    mmc_betTimes=(By.XPATH,'//*[@id="mmc_loop_box"]/div[2]/div/ul/li[1]/span[2]/em')
+    #获取投注金额
+    def get_mmcBetM(self):
+        return float(self.get_text(self.mmc_betM))*float(self.get_text(self.mmc_betTimes))
+
     #秒秒彩下注流程
     def wbgMmcBetting(self):
         self.open_url(self.base_url)
         self.choiceNumber()
         self.click_quickSubmint_btn()
-        time.sleep(0.5)
+        self.dt_alter()
+        time.sleep(1)
         self.click_ok_btn()
         self.waitMoretimesBtnToBeVisable()
-        self.click_cancel_btn()
+        # self.click_cancel_btn()

@@ -47,6 +47,7 @@ class TraceIcon(Bet):
         # self.goto_betTxffc()
         self.choiceNumer(20)
         self.click_aaNumber_btn()
+        self.dt_alter()
         self.click_toAddNumber_btn()
         self.click_lgenTrace_btn()
         self.click_traceSubmit_btn()

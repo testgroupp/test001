@@ -15,11 +15,11 @@ class LoginPage(BaseObject):
     #登录按钮
     login_btn=(By.XPATH,"//*[@class='btn fr']")
     #前台地址
-    base_url="http://www.mcpoker.net/"
+    base_url="http://www.mochen111.com/"
     #用户名
-    username = "delf002"
+    username = "demong010"
     #密码
-    password = "abc123"
+    password = "demong010"
 
     #输入用户名
     def input_unsername(self,username):
@@ -47,7 +47,7 @@ class LoginPage(BaseObject):
         :param cpGame: 彩票游戏名称
         :return:
         """
-        if self.base_url=="http://www.mochen111.net/":
+        if self.base_url=="http://www.mochen111.com/":
             cp=self.driver.find_element(By.XPATH,"//div[text()='%s']" %(cpGame))
             dlt=cp.get_attribute("data-lt")
             dcls=cp.get_attribute("data-lt-cls")

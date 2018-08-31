@@ -37,12 +37,14 @@ class MmcDayReport(WBGMmc):
         data1 = self.get_dayBettingData()
         self.open_url(self.base_url)
         self.wbgMmcBetting()
-        time.sleep(2)
+        time.sleep(1)
+        mmc_M=self.get_mmcBetM()
+        print("秒秒彩投注金额：",mmc_M)
         self.goto_dayReport()
         data2 = self.get_dayBettingData()
         print("data1:", data1, "\ndata2:", data2)
         try:
-            assert (data2 == data1 + 10)
+            assert (data2 == data1 + mmc_M)
         except:
             self.get_screenshot()
-            assert (data2 == data1 + 10)
+            assert (data2 == data1 + mmc_M)

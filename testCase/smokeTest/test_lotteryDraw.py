@@ -2,6 +2,7 @@
 from selenium import webdriver
 from Resouce.lotteryDrawPage import LotteryDraw
 import unittest,time
+from decimal import Decimal
 
 class TestLotteryDraw(unittest.TestCase):
     def setUp(self):
@@ -11,8 +12,7 @@ class TestLotteryDraw(unittest.TestCase):
         ld=LotteryDraw(self.driver)
         ld.login()
         ld.lotteryDraw()
-        num1=ld.get_bonusNum()
-        # num1=56
+        num1=float(Decimal(ld.get_bonusNum())*Decimal("0.001"))
         num2=ld.get_bonusLater()
         print("num1:",num1,"\nnum2:",num2)
         try:

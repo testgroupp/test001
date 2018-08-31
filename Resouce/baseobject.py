@@ -74,6 +74,7 @@ class BaseObject(object):
         :return:
         """
         return self.get_element(loc).text
+
     def get_screenshot(self):
         """
         截图：

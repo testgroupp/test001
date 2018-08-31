@@ -10,11 +10,17 @@ class TestBetting(unittest.TestCase):
         '''下注：腾讯分分彩-后三-复式'''
         bet1=Bet(self.driver)
         bet1.login()
+        # bet1.goto_betTxffc()
+        # bet1.waitOpen()
+        # while 1:
+        #     time.sleep(0.5)
+        #     t = bet1.turnToSeconds()
+        #     print(t)
+
         bet1.choiceNumer(9)
-        # bet1.click_quickSubmint_btn()
         bet1.click_aaNumber_btn()
+        bet1.dt_alter()
         bet1.click_submit_now_btn()
-        time.sleep(0.5)
         bet1.click_ok_btn()
         bet1.wait_alertToBeVisble()
         msg=bet1.get_text(bet1.submit_alert)

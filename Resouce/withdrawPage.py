@@ -36,7 +36,7 @@ class Withdraw(Betting):
         self.send_keys_text(self.withdrawMoney_input,self.get_minMoney())
     #输入资金密码
     def input_payPassword(self):
-        self.send_keys_text(self.payPassword_input,"aaa123")
+        self.send_keys_text(self.payPassword_input,"mc123456")
     #点击申请提现按钮
     def click_submint_btn(self):
         self.click_element(self.submit_btn)

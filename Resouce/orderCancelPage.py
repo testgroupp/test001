@@ -38,6 +38,7 @@ class OrderCancel(Bet):
         self.choiceNumer(25)
         # self.click_quickSubmint_btn()
         self.click_aaNumber_btn()
+        self.dt_alter()
         self.click_submit_now_btn()
         time.sleep(0.5)
         self.click_ok_btn()
