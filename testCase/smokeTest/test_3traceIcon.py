@@ -11,6 +11,7 @@ class TestTraceIcon(unittest.TestCase):
         ti=TraceIcon(self.driver)
         ti.login()
         ti.traceIcon()
+
         msg=ti.get_text(ti.traceAlert)
         print("追号提示信息：",msg)
         try:
@@ -18,6 +19,12 @@ class TestTraceIcon(unittest.TestCase):
         except:
             ti.get_screenshot()
             self.assertEqual("订单提交成功！",msg)
+        ti.waitToLotteryDraw()
+        time.sleep(30)
+        ti.goto_cp_toaddNumber()
+        ti.click_theFristAddNumberRecord()
+        ti.assert_addNumberStatue()
+
 
     def tearDown(self):
         self.driver.quit()

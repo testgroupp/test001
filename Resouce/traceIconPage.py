@@ -1,10 +1,10 @@
 #coding=utf-8
 
-from Resouce.txffcPage import Bet
+from Resouce.lotteryDrawPage import LotteryDraw
 from selenium.webdriver.common.by import By
 import time
 
-class TraceIcon(Bet):
+class TraceIcon(LotteryDraw):
     """
     分分彩追号
     """
@@ -12,12 +12,44 @@ class TraceIcon(Bet):
     toAddNumber_btn = (By.XPATH, '//*[text()="我要追号"]')
     # 生成追号计划按钮
     lgenTrace_btn = (By.ID, 'lgenTrace')
+    #追号期数
+    dataNumber=(By.XPATH,'//*[@id="trace-double"]/ul/li[1]/em')
+    #获取追号期数
+    def get_dataNumber(self):
+        return int(self.get_text(self.dataNumber))
     # 立即追号按钮
     traceSubmit_btn = (By.LINK_TEXT, '立即追号')
     # 提示框中的确定按钮
     traceAlert_okBtn = (By.XPATH, '//*[@i-id="lt_ok"]')
     # 追号订单信息框
     traceAlert = (By.XPATH,'//*[@id="content:lottery_submitTrace"]')
+    #个人中心——游戏记录——彩票追号地址
+    cp_toaddNumber_url="static/sobet/personalCenter.html#trace"
+    #跳转到彩票追号页面
+    def goto_cp_toaddNumber(self):
+        self.open_url(self.base_url+self.cp_toaddNumber_url)
+    #彩票追号页面第一条记录
+    theFirstAddNumRecord=(By.XPATH,'//*[@id="admin_history"]/div[3]/div[5]/ul/li[1]')
+    #点击第一条追号记录
+    def click_theFristAddNumberRecord(self):
+        self.click_element(self.theFirstAddNumRecord)
+        time.sleep(1)
+    #追号详情记录
+    addNumberDetail=(By.XPATH,'//*[@class="traceInner"]/li')
+    #获取追号记录数
+    def get_addNubmerDetail(self):
+        return len(self.get_elements(self.addNumberDetail))-1
+    #第二条追号状态
+    addNumberStatu=(By.XPATH,'//*[@class="traceInner"]/li[3]/em[2]/label')
+    #断言追号状态
+    def assert_addNumberStatue(self):
+        statu=self.get_text(self.addNumberStatu)
+        print("追号进度：",statu)
+        try:
+            assert(statu in ("已完成","已取消"))
+        except:
+            self.get_screenshot()
+            assert (statu in ("已完成", "已取消"))
 
     # 点击我要追号按钮
     def click_toAddNumber_btn(self,):
