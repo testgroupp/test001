@@ -2,6 +2,7 @@
 
 from Resouce.lotteryDrawPage import LotteryDraw
 from selenium.webdriver.common.by import By
+from decimal import Decimal
 import time
 
 class DayReport(LotteryDraw):
@@ -33,7 +34,7 @@ class DayReport(LotteryDraw):
         id = self.get_betAmout_Id()
         # 日投注数据
         dayBettingData = (By.XPATH, '//*[@id="admin_report"]/div[2]/div[4]/ul[2]/li[1]/span[%d]' % (id))
-        return float(self.get_text(dayBettingData))
+        return self.get_text(dayBettingData)
 
     #日报表数据检查流程
     def check_dayReport(self):
@@ -53,14 +54,15 @@ class DayReport(LotteryDraw):
         self.wait_alertToBeVisble()
         time.sleep(2)
         self.waitToLotteryDraw()
+        time.sleep(20)
 
         self.goto_dayReport()
         data2=self.get_dayBettingData()
         print("data1:",data1,"\ndata2:",data2)
         try:
-            assert(data2==data1+betM)
+            assert(Decimal(data2)==Decimal(data1)+Decimal(betM))
         except:
             self.get_screenshot()
-            assert(data2==data1+betM)
+            assert(Decimal(data2)==Decimal(data1)+Decimal(betM))
 
 

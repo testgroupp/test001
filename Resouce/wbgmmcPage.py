@@ -2,6 +2,7 @@
 
 from Resouce.betting import Betting
 from selenium.webdriver.common.by import By
+from decimal import Decimal
 import time,random
 
 class WBGMmc(Betting):
@@ -33,6 +34,16 @@ class WBGMmc(Betting):
     #点击后三
     def click_hou3(self):
         self.click_element(self.hou3)
+    #连续开奖次数输入框
+    loop_input=(By.XPATH,'//*[@id="mmcLoopSet"]/input')
+    #开奖设置文本
+    setting=(By.XPATH,'//*[text()="开奖设置"]')
+    #连续武奖两次
+    def input_loop(self):
+        self.get_element(self.loop_input).clear()
+        self.send_keys_text(self.loop_input,"2")
+        self.click_element(self.setting)
+        time.sleep(1)
     #再玩一次按钮
     moretimes_btn=(By.XPATH,'//*[text()="再玩一次"]')
     #等待再玩一次按钮出现
@@ -51,7 +62,8 @@ class WBGMmc(Betting):
     mmc_betTimes=(By.XPATH,'//*[@id="mmc_loop_box"]/div[2]/div/ul/li[1]/span[2]/em')
     #获取投注金额
     def get_mmcBetM(self):
-        return float(self.get_text(self.mmc_betM))*float(self.get_text(self.mmc_betTimes))
+        # return float(self.get_text(self.mmc_betM))*float(self.get_text(self.mmc_betTimes))
+        return Decimal(self.get_text(self.mmc_betM))*Decimal(self.get_text(self.mmc_betTimes))
 
     #秒秒彩下注流程
     def wbgMmcBetting(self):
@@ -60,6 +72,7 @@ class WBGMmc(Betting):
         self.click_quickSubmint_btn()
         self.dt_alter()
         time.sleep(1)
+        self.input_loop()
         self.click_ok_btn()
         self.waitMoretimesBtnToBeVisable()
         # self.click_cancel_btn()

@@ -81,7 +81,7 @@ class BaseObject(object):
         :return:
         """
         now=time.strftime("%Y%m%d_%H%M%S")
-        self.driver.get_screenshot_as_file("E:\\test001\\Result\\pics\\" +now+ "error.jpg")
+        self.driver.get_screenshot_as_file("E:\\test001\\Result\\pics\\" +now+ "error.png")
     def is_visible(self,timeout,loc):
         """
         等待元素出现

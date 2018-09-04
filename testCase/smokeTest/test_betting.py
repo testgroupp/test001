@@ -10,6 +10,7 @@ class TestBetting(unittest.TestCase):
         '''下注：腾讯分分彩-后三-复式'''
         bet1=Bet(self.driver)
         bet1.login()
+
         # bet1.goto_betTxffc()
         # bet1.waitOpen()
         # while 1:

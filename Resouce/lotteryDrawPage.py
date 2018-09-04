@@ -21,6 +21,7 @@ class LotteryDraw(Bet):
     #等待开奖
     def waitToLotteryDraw(self):
         self.is_not_visble(180,self.theFirtStatu)
+        time.sleep(1)
     #获取开奖后第一条投注记录中的中奖金额
     def get_bonusLater(self):
         el=self.get_element(self.statuLater)

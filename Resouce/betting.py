@@ -45,7 +45,7 @@ class Betting(LoginPage):
 
     #获取投注金额
     def get_betMoney(self):
-        return float(self.get_text(self.betMoney))
+        return self.get_text(self.betMoney)
     #立即投注按钮
     submit_now_btn=(By.LINK_TEXT,"立即投注")
     #点击立即投注
@@ -61,31 +61,45 @@ class Betting(LoginPage):
     #个人中心-游戏记录中第一条注单信息：投注时间
     theFirstTime=(By.XPATH,'//*[@id="admin_history"]/div[3]/div[4]/ul/li[1]/span[1]')
 
-
-    #小时定位
-    h=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[1]")
-    #分钟定位
-    m=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[2]")
-    #秒定位
-    s=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[3]")
-    #获取小时数
-    def getHours(self):
-        return int(self.get_text(self.h))
-    #获取分钟数
-    def getMinites(self):
-        return  int(self.get_text(self.m))
-    #获取秒数
-    def getSeconds(self):
-        return  int(self.get_text(self.s))
-    #将时间转为秒数
+    #时间控件组
+    time_el=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]")
+    #获取时、分、秒,并转化为秒
     def turnToSeconds(self):
-        hours=self.getHours()
-        minites=self.getMinites()
-        seconds=self.getSeconds()
-        t=hours*60*60+minites*60+seconds
-        return t
+        t=self.get_element(self.time_el).get_attribute("innerText")
+        j = 0
+        n = []
+        for i in t:
+            if i != " ":
+                n.append(j)
+            j = j + 1
+        h = int(t[n[0]:n[1] + 1])
+        m = int(t[n[2]:n[3] + 1])
+        s = int(t[n[4]:n[5] + 1])
+        seconds = h*60*60+m*60+s
+        return  seconds
 
-
+    # #小时定位
+    # h=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[1]")
+    # #分钟定位
+    # m=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[2]")
+    # #秒定位
+    # s=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[3]")
+    # #获取小时数
+    # def getHours(self):
+    #     return int(self.get_text(self.h))
+    # #获取分钟数
+    # def getMinites(self):
+    #     return  int(self.get_text(self.m))
+    # #获取秒数
+    # def getSeconds(self):
+    #     return  int(self.get_text(self.s))
+    # #将时间转为秒数
+    # def turnToSeconds(self):
+    #     hours=self.getHours()
+    #     minites=self.getMinites()
+    #     seconds=self.getSeconds()
+    #     t=hours*60*60+minites*60+seconds
+    #     return t
 
 
     #开售提示:空文本

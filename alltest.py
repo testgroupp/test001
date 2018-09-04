@@ -8,7 +8,7 @@ suite = unittest.TestSuite()
 dir = "E:\\test001\\testCase"
 # 定义discover方法的参数
 discover = unittest.defaultTestLoader.discover(dir,
-                                               pattern='test*.py',  # 匹配测试文件
+                                               pattern='test_*.py',  # 匹配测试文件
                                                top_level_dir=None)
 #方法筛选出来的用例，循环添加到测试套件中
 for test_suite in discover:

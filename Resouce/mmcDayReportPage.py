@@ -2,6 +2,7 @@
 
 from Resouce.wbgmmcPage import WBGMmc
 from selenium.webdriver.common.by import By
+from decimal import Decimal
 import time
 
 class MmcDayReport(WBGMmc):
@@ -29,12 +30,13 @@ class MmcDayReport(WBGMmc):
         id=self.get_betAmout_Id()
         # 日投注数据
         dayBettingData = (By.XPATH, '//*[@id="admin_report"]/div[2]/div[4]/ul[2]/li[1]/span[%d]' %(id))
-        return float(self.get_text(dayBettingData))
+        return self.get_text(dayBettingData)
 
     # 日报表数据检查流程
     def check_dayReport(self):
         self.goto_dayReport()
         data1 = self.get_dayBettingData()
+        # self.get_screenshot()
         self.open_url(self.base_url)
         self.wbgMmcBetting()
         time.sleep(1)
@@ -44,7 +46,8 @@ class MmcDayReport(WBGMmc):
         data2 = self.get_dayBettingData()
         print("data1:", data1, "\ndata2:", data2)
         try:
-            assert (data2 == data1 + mmc_M)
+            print(data2,data1 + mmc_M)
+            assert (Decimal(data2) == Decimal(data1) + mmc_M)
         except:
             self.get_screenshot()
-            assert (data2 == data1 + mmc_M)
+            assert (Decimal(data2) == Decimal(data1) + mmc_M)

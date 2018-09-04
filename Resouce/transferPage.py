@@ -20,9 +20,15 @@ class TransferPage(Betting):
     turnIn_ag=(By.XPATH,"//*[@id='turnIn']//*[text()='AG钱包']")
     #现有全额文本框
     inBalance_text=(By.ID,"inBalance")
-
+    #转账金额上层div
+    transfer_upDiv=(By.ID,'cash')
     #转账金额输入框
     transfer_input=(By.ID,"agcash")
+    #显示转账金额上层div,转账金额输入框可见
+    def show_transfer_upDiv(self):
+        self.driver.execute_script("arguments[0].style.display='block';",self.get_element(self.transfer_upDiv))
+        self.driver.execute_script("arguments[0].style.display='none';", self.get_element(self.transfer_input))
+
     #立即转入按钮
     submintNow_btn=(By.XPATH,"//*[@class='btn submit-btn']")
 

@@ -14,12 +14,16 @@ class LoginPage(BaseObject):
     pasword_input=(By.ID,"password")
     #登录按钮
     login_btn=(By.XPATH,"//*[@class='btn fr']")
-    #前台地址
-    base_url="http://www.mochen111.com/"
-    #用户名
-    username = "demong010"
-    #密码
-    password = "demong010"
+
+    #摩臣前台地址及登录账号密码
+    # base_url="http://www.mochen111.com/"
+    # username = "demong010"
+    # password = "demong010"
+
+    #摩登前台地址及登录账号密码
+    base_url="http://www.mod168.space/"
+    username="mdceshi01"
+    password="abc123"
 
     #输入用户名
     def input_unsername(self,username):

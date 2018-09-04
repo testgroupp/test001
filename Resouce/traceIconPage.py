@@ -12,6 +12,13 @@ class TraceIcon(LotteryDraw):
     toAddNumber_btn = (By.XPATH, '//*[text()="我要追号"]')
     # 生成追号计划按钮
     lgenTrace_btn = (By.ID, 'lgenTrace')
+    #追号期数输入框
+    initTotals_input=(By.XPATH,'//*[@id="trace-double"]/ul/li[3]/span/input')
+    #追2期
+    def input_initTotals(self):
+        self.get_element(self.initTotals_input).clear()
+        self.send_keys_text(self.initTotals_input,"2")
+
     #追号期数
     dataNumber=(By.XPATH,'//*[@id="trace-double"]/ul/li[1]/em')
     #获取追号期数
@@ -81,6 +88,7 @@ class TraceIcon(LotteryDraw):
         self.click_aaNumber_btn()
         self.dt_alter()
         self.click_toAddNumber_btn()
+        self.input_initTotals()
         self.click_lgenTrace_btn()
         self.click_traceSubmit_btn()
         self.click_traceAlert_okBtn()
