@@ -22,12 +22,15 @@ class TransferPage(Betting):
     inBalance_text=(By.ID,"inBalance")
     #转账金额上层div
     transfer_upDiv=(By.ID,'cash')
-    #转账金额输入框
-    transfer_input=(By.ID,"agcash")
-    #显示转账金额上层div,转账金额输入框可见
-    def show_transfer_upDiv(self):
-        self.driver.execute_script("arguments[0].style.display='block';",self.get_element(self.transfer_upDiv))
-        self.driver.execute_script("arguments[0].style.display='none';", self.get_element(self.transfer_input))
+    #转账金额下层输入框
+    transfer_downDiv=(By.ID,"agcash")
+    #选择显示的金额输入框并输入金额
+    def choiceVisbleDivAndSendMoney(self,money):
+        a=[self.get_element(self.transfer_upDiv),self.get_element(self.transfer_downDiv)]
+        for i in a:
+            if i.get_attribute("style")!="display: none;":
+                i.send_keys(money)
+                time.sleep(1)
 
     #立即转入按钮
     submintNow_btn=(By.XPATH,"//*[@class='btn submit-btn']")
@@ -53,12 +56,6 @@ class TransferPage(Betting):
         time.sleep(2)
         self.click_element(self.turnIn_ag)
 
-    '''
-    #输入转账金额
-    def input_transfer(self):
-        money=random.randint(20,30)
-        self.send_keys_text(self.transfer_input,money)
-    '''
     #点击立即转入
     def click_submitNow(self):
         self.click_element(self.submintNow_btn)

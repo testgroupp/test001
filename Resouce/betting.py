@@ -78,29 +78,6 @@ class Betting(LoginPage):
         seconds = h*60*60+m*60+s
         return  seconds
 
-    # #小时定位
-    # h=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[1]")
-    # #分钟定位
-    # m=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[2]")
-    # #秒定位
-    # s=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]/b[3]")
-    # #获取小时数
-    # def getHours(self):
-    #     return int(self.get_text(self.h))
-    # #获取分钟数
-    # def getMinites(self):
-    #     return  int(self.get_text(self.m))
-    # #获取秒数
-    # def getSeconds(self):
-    #     return  int(self.get_text(self.s))
-    # #将时间转为秒数
-    # def turnToSeconds(self):
-    #     hours=self.getHours()
-    #     minites=self.getMinites()
-    #     seconds=self.getSeconds()
-    #     t=hours*60*60+minites*60+seconds
-    #     return t
-
 
     #开售提示:空文本
     # OpenAlert=(By.XPATH,'//*[@class="js-issue-wrap issue fl"]/div[2]/span[not(text())]')

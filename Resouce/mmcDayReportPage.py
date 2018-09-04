@@ -36,7 +36,6 @@ class MmcDayReport(WBGMmc):
     def check_dayReport(self):
         self.goto_dayReport()
         data1 = self.get_dayBettingData()
-        # self.get_screenshot()
         self.open_url(self.base_url)
         self.wbgMmcBetting()
         time.sleep(1)
