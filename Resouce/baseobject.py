@@ -2,6 +2,7 @@
 import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import sys
 
 class BaseObject(object):
     """
@@ -81,7 +82,7 @@ class BaseObject(object):
         :return:
         """
         now=time.strftime("%Y%m%d_%H%M%S")
-        self.driver.get_screenshot_as_file("E:\\test001\\Result\\pics\\" +now+ "error.png")
+        self.driver.get_screenshot_as_file(sys.path[1]+"\\Result\\pics\\" +now+ "error.png")
     def is_visible(self,timeout,loc):
         """
         等待元素出现
