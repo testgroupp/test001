@@ -6,25 +6,30 @@ import smtplib #邮件模块
 from email.mime.text import MIMEText  #邮件内容
 from email.mime.multipart import MIMEMultipart  #附件
 
-# 构造测试集
-suite = unittest.TestSuite()
-# 定义测试文件查找目录
-dir = sys.path[1]+"\\testCase"
-# 定义discover方法的参数
-discover = unittest.defaultTestLoader.discover(dir,
-                                               pattern='test_reg.py',  # 匹配测试文件
-                                               top_level_dir=None)
-#方法筛选出来的用例，循环添加到测试套件中
-for test_suite in discover:
-    suite.addTests(test_suite)
-
 now=time.strftime("%Y%m%d_%H%M")
-filename =sys.path[1]+ "\\Result\\reports\\"+now+".html" # 测试报告存放路径
-fp = open(filename, 'wb')  # r只读   wb:读写
-# 定义测试报告
-runner = HTMLTestRunner.HTMLTestRunner(stream=fp,  # 指定测试报告文件
-                                       title="测试报告",  # 报告标题
-                                       description="用例执行情况")  # 报告副标题
+
+def runTestsToReport():
+    # 构造测试集
+    suite = unittest.TestSuite()
+    # 定义测试文件查找目录
+    dir = sys.path[1]+"\\testCase"
+    # 定义discover方法的参数
+    discover = unittest.defaultTestLoader.discover(dir,
+                                                   pattern='test_reg.py',  # 匹配测试文件
+                                                   top_level_dir=None)
+    #方法筛选出来的用例，循环添加到测试套件中
+    for test_suite in discover:
+        suite.addTests(test_suite)
+
+    filename =sys.path[1]+ "\\Result\\reports\\"+now+".html" # 测试报告存放路径
+    fp = open(filename, 'wb')  # r只读   wb:读写
+    # 定义测试报告
+    runner = HTMLTestRunner.HTMLTestRunner(stream=fp,  # 指定测试报告文件
+                                           title="测试报告",  # 报告标题
+                                           description="用例执行情况")  # 报告副标题
+    # 执行用例
+    runner.run(suite)
+    fp.close()
 
 #发送邮件
 def send_mail(report_file):
@@ -64,7 +69,5 @@ def send_Report():
     send_mail(file)
 
 if __name__ == '__main__':
-    # 执行用例
-    runner.run(suite)
-    fp.close()
+    runTestsToReport()
     send_Report()
