@@ -45,7 +45,6 @@ class MmcDayReport(WBGMmc):
         data2 = self.get_dayBettingData()
         print("data1:", data1, "\ndata2:", data2)
         try:
-            print(data2,data1 + mmc_M)
             assert (Decimal(data2) == Decimal(data1) + mmc_M)
         except:
             self.get_screenshot()
