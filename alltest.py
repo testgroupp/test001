@@ -15,7 +15,7 @@ def runTestsToReport():
     dir = sys.path[1]+"\\testCase"
     # 定义discover方法的参数
     discover = unittest.defaultTestLoader.discover(dir,
-                                                   pattern='test_reg.py',  # 匹配测试文件
+                                                   pattern='test_*.py',  # 匹配测试文件
                                                    top_level_dir=None)
     #方法筛选出来的用例，循环添加到测试套件中
     for test_suite in discover:
@@ -36,11 +36,11 @@ def send_mail(report_file):
     # 第三方服务器设置
     sender = 'delf@networkws.com'
     password = 'lxyjhhxpwsxcztbn'
-    receiver = ['delf@networkws.com']
-    # receiver=['delf@networkws.com','hiro@infinitesys.my','muse@networkws.com','demong@networkws.com','scki@networkws.com']
+    # receiver = ['delf@networkws.com']
+    receiver=['delf@networkws.com','hiro@infinitesys.my','muse@networkws.com','demong@networkws.com','scki@networkws.com']
 
     msg = MIMEMultipart()  # 创建一个带附件的邮件实例
-    msg['Subject'] = "冒烟测试报告："+now  # 主题/标题
+    msg['Subject'] = "摩登冒烟测试报告："+now  # 主题/标题
     msg['From'] = sender
     msg['To'] = ";".join(receiver)
     # 邮件正文内容
