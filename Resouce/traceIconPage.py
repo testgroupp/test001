@@ -3,6 +3,7 @@
 from Resouce.lotteryDrawPage import LotteryDraw
 from selenium.webdriver.common.by import By
 import time
+from mylog import *
 
 class TraceIcon(LotteryDraw):
     """
@@ -51,7 +52,7 @@ class TraceIcon(LotteryDraw):
     #断言追号状态
     def assert_addNumberStatue(self):
         statu=self.get_text(self.addNumberStatu)
-        print("追号进度：",statu)
+        logger.info("追号进度：%s" %statu)
         try:
             assert(statu in ("已完成","已取消"))
         except:

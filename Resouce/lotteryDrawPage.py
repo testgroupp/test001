@@ -33,7 +33,7 @@ class LotteryDraw(Bet):
         # self.open_url(self.base_url)
         self.choiceAll(9)
         self.click_aaNumber_btn()
-        self.dt_alter()
+        # self.dt_alter()
         self.click_submit_now_btn()
         time.sleep(0.5)
         self.click_ok_btn()

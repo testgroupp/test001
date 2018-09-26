@@ -3,6 +3,7 @@
 from Resouce.baseobject import BaseObject
 from selenium.webdriver.common.by import By
 import time
+from config import config_login
 
 class LoginPage(BaseObject):
     """
@@ -15,15 +16,10 @@ class LoginPage(BaseObject):
     #登录按钮
     login_btn=(By.XPATH,"//*[@class='btn fr']")
 
-    #摩臣前台地址及登录账号密码
-    # base_url="http://www.mochen111.com/"
-    # username = "demong010"
-    # password = "demong010"
-
-    #摩登前台地址及登录账号密码
-    base_url="http://www.mod168.space/"
-    username="mdceshi01"
-    password="abc123"
+    #平台首页台地址及登录账号密码
+    base_url=config_login.base_url
+    username=config_login.username
+    password=config_login.password
 
     #输入用户名
     def input_unsername(self,username):
@@ -44,6 +40,7 @@ class LoginPage(BaseObject):
         self.input_password(self.password)
         self.click_loginbtn()
         time.sleep(2)
+
 
     def get_cpGameUrl(self,cpGame):
         """

@@ -2,9 +2,11 @@
 from selenium import webdriver
 from Resouce.withdrawPage import Withdraw
 import unittest
+from mylog import *
 
 class TestWithdraw(unittest.TestCase):
     def setUp(self):
+        logger.info("------提现------")
         self.driver = webdriver.Chrome()
 
     def test_withdraw(self):
@@ -14,7 +16,7 @@ class TestWithdraw(unittest.TestCase):
 
         withdraw1.withdraw()
         msg=withdraw1.getMsg()
-        print("提示信息:",msg)
+        logger.info("提示信息: %s" %msg)
         try:
             self.assertIn("提现申请订单成功",msg)
         except:

@@ -2,9 +2,11 @@
 from selenium import webdriver
 from Resouce.promotePage import Promote
 import unittest,time
+from mylog import *
 
 class TestPromote(unittest.TestCase):
     def setUp(self):
+        logger.info("------推广链接------")
         self.driver = webdriver.Chrome()
     def test_promote(self):
         '''推广链接'''
@@ -13,7 +15,7 @@ class TestPromote(unittest.TestCase):
         pt.promote()
         msg=pt.get_text(pt.linkAlert)
         # msg="test"
-        print("增加推广链接提示信息：",msg)
+        logger.info("增加推广链接提示信息：%s" %msg)
         try:
             self.assertEqual("成功生成推广链接！",msg)
         except:
@@ -22,7 +24,7 @@ class TestPromote(unittest.TestCase):
         time.sleep(3)
         ln_new=pt.get_text(pt.ln_name)
         # ln_new="test"
-        print("ln:",pt.ln,"\nln_new:",ln_new)
+        logger.info("\n注册链接名: %s \n生成链接名: %s" %(pt.ln,ln_new))
         try:
             self.assertEqual(pt.ln,ln_new)
         except:

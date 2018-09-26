@@ -2,9 +2,10 @@
 from selenium import webdriver
 from Resouce.mmcDayReportPage import MmcDayReport
 import unittest
-
+from mylog import *
 class TestMmcDayReport(unittest.TestCase):
     def setUp(self):
+        logger.info("------秒秒彩日报表------")
         self.driver = webdriver.Chrome()
     def test_mmcDayReport(self):
         '''秒秒彩日报表'''

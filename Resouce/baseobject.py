@@ -2,6 +2,7 @@
 import time
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from mylog import *
 import sys
 
 class BaseObject(object):
@@ -17,7 +18,12 @@ class BaseObject(object):
         :param loc: 元素定位信息，无组格式
         :return:
         """
-        return self.driver.find_element(*loc)
+        el=None
+        try:
+            el=self.driver.find_element(*loc)
+        except Exception as e:
+            logger.error(e)
+        return el
 
     def get_elements(self,loc):
         """
@@ -25,7 +31,12 @@ class BaseObject(object):
         :param loc: 元素定位信息，无组格式
         :return:
         """
-        return self.driver.find_elements(*loc)
+        el=None
+        try:
+            el=self.driver.find_elements(*loc)
+        except Exception as e:
+            logger.error(e)
+        return el
 
     def click_element(self,loc):
         """
@@ -33,18 +44,26 @@ class BaseObject(object):
         :param loc: 元素定位信息
         :return: None
         """
-        el=self.get_element(loc)
-        el.click()
+        try:
+            el=self.get_element(loc)
+            el.click()
+        except Exception as e:
+            logging.error(e)
         return
+
     def click_elements(self,loc):
         """
         点击一组元素
         :param loc:
         :return:
         """
-        els=self.get_elements(loc)
-        for i in els:
-            i.click()
+        try:
+            els=self.get_elements(loc)
+            for i in els:
+                i.click()
+        except Exception as e:
+            logger.error(e)
+        return
 
     def send_keys_text(self,loc,text):
         """
@@ -53,10 +72,13 @@ class BaseObject(object):
         :param text: 要输入的文本
         :return:
         """
-        el=self.get_element(loc)
-        #el.clear()
-        el.send_keys(text)
-        return
+        try:
+            el=self.get_element(loc)
+            #el.clear()
+            el.send_keys(text)
+            return
+        except Exception as e:
+            logger.error(e)
 
     def open_url(self,url):
         """
@@ -64,9 +86,12 @@ class BaseObject(object):
         :param url: 网页地址
         :return:
         """
-        self.driver.get(url)
-        self.driver.maximize_window()
-        time.sleep(3)
+        try:
+            self.driver.get(url)
+            self.driver.maximize_window()
+            time.sleep(3)
+        except Exception as e:
+            logger.error(e)
 
     def get_text(self,loc):
         """
@@ -74,8 +99,12 @@ class BaseObject(object):
         :param loc: 元素定位信息
         :return:
         """
-        return self.get_element(loc).text
-
+        t=None
+        try:
+            t=self.get_element(loc).text
+        except Exception as e:
+            logger.error(e)
+        return t
     def get_screenshot(self):
         """
         截图：
@@ -94,7 +123,7 @@ class BaseObject(object):
             WebDriverWait(self.driver,timeout,0.5).until(
                 EC.visibility_of_element_located(loc))
         except Exception as e:
-            print(e)
+            logger.error(e)
 
     def is_exit(self,timeout,loc):
         """
@@ -106,8 +135,8 @@ class BaseObject(object):
         try:
             WebDriverWait(self.driver,timeout,0.5).until(
                 EC.presence_of_element_located(loc))
-        except:
-            pass
+        except Exception as e:
+            logger.error(e)
 
     def is_not_visble(self,timeout,loc):
         """
@@ -119,5 +148,5 @@ class BaseObject(object):
         try:
             WebDriverWait(self.driver,timeout,3).until_not(
                 EC.visibility_of_element_located(loc))
-        except:
-            pass
+        except Exception as e:
+            logger.error(e)

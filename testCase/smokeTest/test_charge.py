@@ -2,9 +2,10 @@
 from selenium import webdriver
 from Resouce.chargePage import ChargePage
 import unittest
-
+from mylog import *
 class TestCharge(unittest.TestCase):
     def setUp(self):
+        logger.info("------充值------")
         self.driver = webdriver.Chrome()
 
     def test_charge(self):
@@ -14,7 +15,7 @@ class TestCharge(unittest.TestCase):
         charge1.goto_charge()
         charge1.charge()
         text = self.driver.title
-        print("支付渠道：",text)
+        logger.info("支付渠道：%s" %text)
         try:
             self.assertNotIn("摩臣",text)
             self.assertNotIn("摩登",text)

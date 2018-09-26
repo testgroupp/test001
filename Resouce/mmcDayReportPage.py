@@ -4,6 +4,7 @@ from Resouce.wbgmmcPage import WBGMmc
 from selenium.webdriver.common.by import By
 from decimal import Decimal
 import time
+from mylog import *
 
 class MmcDayReport(WBGMmc):
     """
@@ -40,10 +41,10 @@ class MmcDayReport(WBGMmc):
         self.wbgMmcBetting()
         time.sleep(1)
         mmc_M=self.get_mmcBetM()
-        print("秒秒彩投注金额：",mmc_M)
+        logger.info("秒秒彩投注金额：%s" %mmc_M)
         self.goto_dayReport()
         data2 = self.get_dayBettingData()
-        print("data1:", data1, "\ndata2:", data2)
+        logger.info("投注前数据: %s 投注后数据: %s" % (data1, data2))
         try:
             assert (Decimal(data2) == Decimal(data1) + mmc_M)
         except:

@@ -2,9 +2,11 @@
 from selenium import webdriver
 from Resouce.transferPage import TransferPage
 import unittest,random,time
+from mylog import *
 
 class TestTransfer(unittest.TestCase):
     def setUp(self):
+        logger.info("------转账------")
         self.driver = webdriver.Chrome()
 
     def test_tranfer(self):
@@ -21,7 +23,7 @@ class TestTransfer(unittest.TestCase):
         transfer1.waitAlertToBeVisible()
         time.sleep(0.5)
         msg=transfer1.get_msg()
-        print("提示信息：",msg)
+        logger.info("提示信息：%s" %msg)
         try:
             self.assertEqual(msg,"转账成功")
         except:

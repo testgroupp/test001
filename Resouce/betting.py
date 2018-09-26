@@ -3,6 +3,7 @@
 from Resouce.loginPage import LoginPage
 from selenium.webdriver.common.by import By
 import time
+from mylog import *
 class Betting(LoginPage):
     """
     彩票投注相关 共用元素及方法
@@ -40,6 +41,7 @@ class Betting(LoginPage):
             self.click_dt_alter_ok_btn()
         except:
             pass
+
     #投注金额
     betMoney=(By.XPATH,'//li[@data-type="hsm_zx_fs"]//div[contains(@class,"money")]')
 

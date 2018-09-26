@@ -5,6 +5,8 @@ import sys,os
 import smtplib #邮件模块
 from email.mime.text import MIMEText  #邮件内容
 from email.mime.multipart import MIMEMultipart  #附件
+from config import config_mail
+from config import config_report
 
 now=time.strftime("%Y%m%d_%H%M")
 
@@ -25,7 +27,7 @@ def runTestsToReport():
     fp = open(filename, 'wb')  # r只读   wb:读写
     # 定义测试报告
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,  # 指定测试报告文件
-                                           title="测试报告",  # 报告标题
+                                           title=config_report.title,  # 报告标题
                                            description="用例执行情况")  # 报告副标题
     # 执行用例
     runner.run(suite)
@@ -34,13 +36,12 @@ def runTestsToReport():
 #发送邮件
 def send_mail(report_file):
     # 第三方服务器设置
-    sender = 'delf@networkws.com'
-    password = 'lxyjhhxpwsxcztbn'
-    # receiver = ['delf@networkws.com']
-    receiver=['delf@networkws.com','hiro@infinitesys.my','muse@networkws.com','demong@networkws.com','scki@networkws.com']
+    sender =config_mail.sender
+    password = config_mail.password
+    receiver=config_mail.receiver
 
     msg = MIMEMultipart()  # 创建一个带附件的邮件实例
-    msg['Subject'] = "摩登冒烟测试报告："+now  # 主题/标题
+    msg['Subject'] =config_mail.Subject + "冒烟测试报告" + now
     msg['From'] = sender
     msg['To'] = ";".join(receiver)
     # 邮件正文内容

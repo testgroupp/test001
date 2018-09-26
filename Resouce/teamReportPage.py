@@ -4,6 +4,7 @@ from Resouce.lotteryDrawPage import LotteryDraw
 from selenium.webdriver.common.by import By
 from decimal import Decimal
 import time
+from mylog import *
 
 class TeamReport(LotteryDraw):
     """
@@ -48,7 +49,7 @@ class TeamReport(LotteryDraw):
         self.dt_alter()
         time.sleep(1)
         betM = self.get_betMoney()
-        print("投注金额：",betM)
+        logger.info("投注金额：%s" %betM)
         self.click_submit_now_btn()
         time.sleep(0.5)
         self.click_ok_btn()
@@ -59,7 +60,7 @@ class TeamReport(LotteryDraw):
 
         self.goto_teamReport()
         data2=self.get_teamBettingData()
-        print("data1:",data1,"\ndata2:",data2)
+        logger.info("投注前数据: %s 投注后数据: %s" % (data1, data2))
         try:
             assert(Decimal(data2)==Decimal(data1)+Decimal(betM))
         except:

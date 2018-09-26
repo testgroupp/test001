@@ -2,9 +2,11 @@
 from selenium import webdriver
 from Resouce.regPage import Reg
 import unittest
+from mylog import *
 
 class TestReg(unittest.TestCase):
     def setUp(self):
+        logger.info("------注册------")
         self.driver = webdriver.Chrome()
     def test_reg(self):
         '''注册'''
@@ -13,7 +15,7 @@ class TestReg(unittest.TestCase):
         rg.reg()
         msg=rg.get_text(rg.regAlert)
         # msg="test"
-        print("注册提示信息：",msg)
+        logger.info("注册提示信息：%s" %msg)
         try:
             self.assertEqual("开户成功！",msg)
         except:
