@@ -22,6 +22,7 @@ class BaseObject(object):
         try:
             el=self.driver.find_element(*loc)
         except Exception as e:
+            self.get_screenshot()
             logger.error(e)
         return el
 
@@ -35,6 +36,7 @@ class BaseObject(object):
         try:
             el=self.driver.find_elements(*loc)
         except Exception as e:
+            self.get_screenshot()
             logger.error(e)
         return el
 
@@ -48,6 +50,7 @@ class BaseObject(object):
             el=self.get_element(loc)
             el.click()
         except Exception as e:
+            self.get_screenshot()
             logging.error(e)
         return
 
@@ -62,6 +65,7 @@ class BaseObject(object):
             for i in els:
                 i.click()
         except Exception as e:
+            self.get_screenshot()
             logger.error(e)
         return
 
@@ -78,6 +82,7 @@ class BaseObject(object):
             el.send_keys(text)
             return
         except Exception as e:
+            self.get_screenshot()
             logger.error(e)
 
     def open_url(self,url):
@@ -91,6 +96,7 @@ class BaseObject(object):
             self.driver.maximize_window()
             time.sleep(3)
         except Exception as e:
+            self.get_screenshot()
             logger.error(e)
 
     def get_text(self,loc):
@@ -103,6 +109,7 @@ class BaseObject(object):
         try:
             t=self.get_element(loc).text
         except Exception as e:
+            self.get_screenshot()
             logger.error(e)
         return t
     def get_screenshot(self):
@@ -123,6 +130,7 @@ class BaseObject(object):
             WebDriverWait(self.driver,timeout,0.5).until(
                 EC.visibility_of_element_located(loc))
         except Exception as e:
+            self.get_screenshot()
             logger.error(e)
 
     def is_exit(self,timeout,loc):
@@ -136,6 +144,7 @@ class BaseObject(object):
             WebDriverWait(self.driver,timeout,0.5).until(
                 EC.presence_of_element_located(loc))
         except Exception as e:
+            self.get_screenshot()
             logger.error(e)
 
     def is_not_visble(self,timeout,loc):
@@ -149,4 +158,5 @@ class BaseObject(object):
             WebDriverWait(self.driver,timeout,3).until_not(
                 EC.visibility_of_element_located(loc))
         except Exception as e:
+            self.get_screenshot()
             logger.error(e)

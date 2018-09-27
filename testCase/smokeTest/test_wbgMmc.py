@@ -6,7 +6,7 @@ from mylog import *
 
 class TestWBGMmc(unittest.TestCase):
     def setUp(self):
-        logger.info("------妙妙彩下注------")
+        logger.info("------秒秒彩下注------")
         self.driver = webdriver.Chrome()
     def test_wbgMmcBetting(self):
         '''WBG秒秒彩-后三-复式'''
