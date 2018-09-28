@@ -1,7 +1,8 @@
 # coding=utf-8
 from selenium import webdriver
 from Resouce.transferPage import TransferPage
-import unittest,random,time
+import unittest,random
+from Resouce.loginPage import LoginPage
 from mylog import *
 
 class TestTransfer(unittest.TestCase):
@@ -11,8 +12,10 @@ class TestTransfer(unittest.TestCase):
 
     def test_tranfer(self):
         '''转账'''
+        login1=LoginPage(self.driver)
+        login1.login()
+
         transfer1=TransferPage(self.driver)
-        transfer1.login()
         transfer1.transfer()
 
         qbBalance1 = float(transfer1.get_qbBalance())

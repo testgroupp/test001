@@ -1,12 +1,13 @@
 #coding=utf-8
 
+from Resouce.baseobject import BaseObject
+from Resouce.lotteryPage import Lottery
 from Resouce.lotteryDrawPage import LotteryDraw
 from selenium.webdriver.common.by import By
 from decimal import Decimal
-import time
 from mylog import *
 
-class TeamReport(LotteryDraw):
+class TeamReport(BaseObject):
     """
     团队报表
     """
@@ -15,13 +16,8 @@ class TeamReport(LotteryDraw):
     #跳转到团队报表
     def goto_teamReport(self):
         self.open_url(self.base_url+self.team_url)
-    # #投注数据
-    # # teamBettingData=(By.XPATH,'//*[@id="admin_report"]/div[1]/div[5]/ul[2]/li[1]/span[2]')
-    # #获取投注数据
-    # def get_teamBettingDate(self):
-    #     return float(self.get_text(self.teamBettingData))
-    jihe = (By.XPATH, '//*[@id="admin_report"]/div[1]/div[5]/ul[1]/li/span')
 
+    jihe = (By.XPATH, '//*[@id="admin_report"]/div[1]/div[5]/ul[1]/li/span')
     # 获取投注字段下标
     def get_betAmout_Id(self):
         l = len(self.get_elements(self.jihe))
@@ -43,19 +39,22 @@ class TeamReport(LotteryDraw):
         self.goto_teamReport()
         data1=self.get_teamBettingData()
         self.open_url(self.base_url)
-        # self.lotteryDraw()
-        self.choiceNumer(9)
-        self.click_aaNumber_btn()
-        self.dt_alter()
+
+        lot1=Lottery(self.driver)
+        lot1.choiceNumer(9)
+        lot1.click_aaNumber_btn()
+        self.click_ok_btn()
         time.sleep(1)
-        betM = self.get_betMoney()
+        betM = lot1.get_betMoney()
         logger.info("投注金额：%s" %betM)
-        self.click_submit_now_btn()
+        lot1.click_submit_now_btn()
         time.sleep(0.5)
         self.click_ok_btn()
-        self.wait_alertToBeVisble()
+        lot1.wait_alertToBeVisble()
         time.sleep(2)
-        self.waitToLotteryDraw()
+
+        ld1=LotteryDraw(self.driver)
+        ld1.waitToLotteryDraw()
         time.sleep(20)
 
         self.goto_teamReport()
@@ -66,8 +65,3 @@ class TeamReport(LotteryDraw):
         except:
             self.get_screenshot()
             assert(Decimal(data2)==Decimal(data1)+Decimal(betM))
-
-
-
-
-

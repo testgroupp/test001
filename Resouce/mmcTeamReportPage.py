@@ -1,18 +1,17 @@
 #coding=utf-8
 
 from Resouce.wbgmmcPage import WBGMmc
+from Resouce.baseobject import BaseObject
 from selenium.webdriver.common.by import By
 from decimal import Decimal
-import time
 from mylog import *
 
-class MmcTeamReport(WBGMmc):
+class MmcTeamReport(BaseObject):
     """
     秒秒彩团队报表
     """
     # 团队报表地址
     team_url = "static/sobet/agencyCenter.html#searchteam"
-
     # 跳转到团队报表
     def goto_teamReport(self):
         self.open_url(self.base_url+self.team_url)
@@ -36,9 +35,10 @@ class MmcTeamReport(WBGMmc):
     def check_teamReport(self):
         self.goto_teamReport()
         data1 = self.get_teamBettingData()
-        # self.get_screenshot()
-        self.wbgMmcBetting()
-        mmc_M=self.get_mmcBetM()
+
+        wbg=WBGMmc(self.driver)
+        wbg.wbgMmcBetting()
+        mmc_M=wbg.get_mmcBetM()
         logger.info("秒秒彩投注金额：%s" %mmc_M)
         self.goto_teamReport()
         data2 = self.get_teamBettingData()

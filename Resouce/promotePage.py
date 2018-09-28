@@ -1,9 +1,9 @@
 #coding=utf-8
 
-from Resouce.lotteryPage import Lottery
+from Resouce.baseobject import BaseObject
 from selenium.webdriver.common.by import By
 import time,random,string
-class Promote(Lottery):
+class Promote(BaseObject):
     """
     推广页面
     """
@@ -12,12 +12,14 @@ class Promote(Lottery):
     #跳转到推广页面
     def goto_promote(self):
         self.open_url(self.base_url+self.reg_url)
+
     #添加按钮
     addLink_btn=(By.XPATH,"//*[@class='addLink']")
     #点击添加按钮
     def click_addLink_btn(self):
         self.click_element(self.addLink_btn)
         time.sleep(1)
+
     #链接名称输入框
     linkname_input=(By.XPATH,'//*[@name="linkname"]')
     #随机链接名称
@@ -26,21 +28,25 @@ class Promote(Lottery):
     def input_linkname(self):
         self.get_element(self.linkname_input).clear()
         self.send_keys_text(self.linkname_input,self.ln)
+
     #玩家单选按钮
     radio_player=(By.XPATH,'//*[@id="admin_report"]//label[2]/input[@name="linkType"]')
     #点击玩家单选按钮
     def click_radio_player(self):
         self.click_element(self.radio_player)
+
     #生成链接按钮
     createlink_btn=(By.LINK_TEXT,'生成链接')
     #点击生成链接按钮
     def click_createlink_btn(self):
         self.click_element(self.createlink_btn)
+
     #生成链接提示框
     linkAlert=(By.ID,'content:tracerateno')
     #等待提示框出现
     def waitLinkAlerToBeVisble(self):
         self.is_visible(6,self.linkAlert)
+
     #链接列表中第一条信息的名称
     ln_name=(By.XPATH,'//*[@id="admin_report"]//ul[2]/li[1]/span[@class="linkName"]')
 

@@ -4,11 +4,19 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from mylog import *
 import sys
+from selenium.webdriver.common.by import By
+from config import config_login
 
 class BaseObject(object):
     """
     基类：元素定位方法、及元素操作
     """
+
+    # 平台首页台地址及登录账号密码
+    base_url = config_login.base_url
+    username = config_login.username
+    password = config_login.password
+
     def __init__(self,driver):
         self.driver=driver
 
@@ -78,7 +86,6 @@ class BaseObject(object):
         """
         try:
             el=self.get_element(loc)
-            #el.clear()
             el.send_keys(text)
             return
         except Exception as e:
@@ -91,13 +98,9 @@ class BaseObject(object):
         :param url: 网页地址
         :return:
         """
-        try:
-            self.driver.get(url)
-            self.driver.maximize_window()
-            time.sleep(3)
-        except Exception as e:
-            self.get_screenshot()
-            logger.error(e)
+        self.driver.get(url)
+        self.driver.maximize_window()
+        time.sleep(3)
 
     def get_text(self,loc):
         """
@@ -160,3 +163,48 @@ class BaseObject(object):
         except Exception as e:
             self.get_screenshot()
             logger.error(e)
+
+    def get_cpGameUrl(self, cpGame):
+        """
+        获取彩票游戏地址
+        :param cpGame: 彩票游戏名称
+        :return:
+        """
+        if self.base_url == "http://www.mochen111.com/":
+            cp = self.driver.find_element(By.XPATH, "//div[text()='%s']" % (cpGame))
+            dlt = cp.get_attribute("data-lt")
+            dcls = cp.get_attribute("data-lt-cls")
+            url_cp = self.base_url + "lottery#" + dcls + "-" + dlt
+        else:
+            cp = self.driver.find_element(By.XPATH, "//*[@class='lottery-text' and text()='%s']/.." % (cpGame))
+            url_cp = cp.get_attribute("href")
+
+        print(url_cp)
+        return url_cp
+
+    # 提示框中确定按钮
+    ok_btn = (By.XPATH, '//*[contains(@i-id,"_ok")]')
+    # 点击弹框中确定按钮
+    def click_ok_btn(self):
+        self.click_element(self.ok_btn)
+
+    # 等待开售提示
+    time_el = (By.XPATH, "//div[contains(@class,'js-clock clock cl-count')]")
+    # 等待开盘
+    def waitOpen(self):
+        self.is_visible(30, self.time_el)
+
+    #获取时、分、秒,并转化为秒
+    def turnToSeconds(self):
+        t=self.get_element(self.time_el).get_attribute("innerText")
+        j = 0
+        n = []
+        for i in t:
+            if i != " ":
+                n.append(j)
+            j = j + 1
+        h = int(t[n[0]:n[1] + 1])
+        m = int(t[n[2]:n[3] + 1])
+        s = int(t[n[4]:n[5] + 1])
+        seconds = h*60*60+m*60+s
+        return  seconds

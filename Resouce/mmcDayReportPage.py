@@ -1,18 +1,17 @@
 #coding=utf-8
 
+from Resouce.baseobject import BaseObject
 from Resouce.wbgmmcPage import WBGMmc
 from selenium.webdriver.common.by import By
 from decimal import Decimal
-import time
 from mylog import *
 
-class MmcDayReport(WBGMmc):
+class MmcDayReport(BaseObject):
     """
     日报表
     """
     # 日报表地址
     day_url = "static/sobet/agencyCenter.html#dayReport"
-
     # 跳转到日报表
     def goto_dayReport(self):
         self.open_url(self.base_url+self.day_url)
@@ -38,9 +37,11 @@ class MmcDayReport(WBGMmc):
         self.goto_dayReport()
         data1 = self.get_dayBettingData()
         self.open_url(self.base_url)
-        self.wbgMmcBetting()
+
+        wbg=WBGMmc(self.driver)
+        wbg.wbgMmcBetting()
         time.sleep(1)
-        mmc_M=self.get_mmcBetM()
+        mmc_M=wbg.get_mmcBetM()
         logger.info("秒秒彩投注金额：%s" %mmc_M)
         self.goto_dayReport()
         data2 = self.get_dayBettingData()

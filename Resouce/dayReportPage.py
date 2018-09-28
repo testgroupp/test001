@@ -1,12 +1,14 @@
 #coding=utf-8
 
-from Resouce.lotteryDrawPage import LotteryDraw
+from Resouce.baseobject import BaseObject
 from selenium.webdriver.common.by import By
+from Resouce.lotteryPage import Lottery
+from Resouce.lotteryDrawPage import LotteryDraw
 from decimal import Decimal
 import time
 from mylog import *
 
-class DayReport(LotteryDraw):
+class DayReport(BaseObject):
     """
     日报表
     """
@@ -15,14 +17,9 @@ class DayReport(LotteryDraw):
     #跳转到日报表
     def goto_dayReport(self):
         self.open_url(self.base_url+self.day_url)
-    # #日投注数据
-    # dayBettingData=(By.XPATH,'//*[@id="admin_report"]/div[2]/div[4]/ul[2]/li[1]/span[2]')
-    # #获取日投注数据
-    # def get_dayBettingData(self):
-    #     return float(self.get_text(self.dayBettingData))
+
     # 日报表字段集合
     jihe = (By.XPATH, '//*[@id="admin_report"]/div[2]/div[4]/ul[1]/li/span')
-
     # 获取投注字段下标
     def get_betAmout_Id(self):
         l = len(self.get_elements(self.jihe))
@@ -42,19 +39,22 @@ class DayReport(LotteryDraw):
         self.goto_dayReport()
         data1=self.get_dayBettingData()
         self.open_url(self.base_url)
-        # self.lotteryDraw()
-        self.choiceNumer(9)
-        self.click_aaNumber_btn()
-        self.dt_alter()
+
+        lot1=Lottery(self.driver)
+        lot1.choiceNumer(9)
+        lot1.click_aaNumber_btn()
+        lot1.click_ok_btn()
         time.sleep(1)
-        betM=self.get_betMoney()
+        betM=lot1.get_betMoney()
         logger.info("投注金额: %s" %betM)
-        self.click_submit_now_btn()
+        lot1.click_submit_now_btn()
         time.sleep(0.5)
         self.click_ok_btn()
-        self.wait_alertToBeVisble()
+        lot1.wait_alertToBeVisble()
         time.sleep(2)
-        self.waitToLotteryDraw()
+
+        ld1=LotteryDraw(self.driver)
+        ld1.waitToLotteryDraw()
         time.sleep(20)
 
         self.goto_dayReport()

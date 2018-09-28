@@ -1,11 +1,12 @@
 #coding=utf-8
 
+from Resouce.baseobject import BaseObject
 from Resouce.lotteryPage import Lottery
 from selenium.webdriver.common.by import By
 from decimal import Decimal
 import time,random
 
-class WBGMmc(Lottery):
+class WBGMmc(BaseObject):
     '''
     WBG秒秒彩
     '''
@@ -14,12 +15,17 @@ class WBGMmc(Lottery):
     def goto_wbgMmc(self):
         self.open_url(self.get_cpGameUrl("WBG秒秒彩"))
 
-    # 选择分投注
+    # 分投注
     fenbet = (By.XPATH, '//*[@id="lottery"]//span[contains(@class,"mode")]/label[@for="modeRadio3"]')
-
     # 点击分投注
     def click_fnebet(self):
         self.click_element(self.fenbet)
+
+    # 后三
+    hou3 = (By.XPATH, '//*[text()="后三"]')
+    # 点击后三
+    def click_hou3(self):
+        self.click_element(self.hou3)
 
     #机选一注：后三复式
     def choiceNumber(self):
@@ -29,11 +35,7 @@ class WBGMmc(Lottery):
         for i in range(1, 4):
             j = random.randint(1, 10)
             self.driver.find_element(By.XPATH, '//*[@id="lottery"]/div[contains(@class,"js-number")]/div/dl[%d]/dd/i[%d]' % (i, j)).click()
-    #后三
-    hou3=(By.XPATH,'//*[text()="后三"]')
-    #点击后三
-    def click_hou3(self):
-        self.click_element(self.hou3)
+
     #连续开奖次数输入框
     loop_input=(By.XPATH,'//*[@id="mmcLoopSet"]/input')
     #开奖设置文本
@@ -44,11 +46,13 @@ class WBGMmc(Lottery):
         self.send_keys_text(self.loop_input,"2")
         self.click_element(self.setting)
         time.sleep(1)
+
     #再玩一次按钮
     moretimes_btn=(By.XPATH,'//*[text()="再玩一次"]')
     #等待再玩一次按钮出现
     def waitMoretimesBtnToBeVisable(self):
         self.is_visible(200,self.moretimes_btn)
+
     #取消按钮
     cancel_btn=(By.XPATH,'//*[text()="取消"]')
     #点击取消按钮
@@ -69,10 +73,10 @@ class WBGMmc(Lottery):
     def wbgMmcBetting(self):
         self.open_url(self.base_url)
         self.choiceNumber()
-        self.click_quickSubmint_btn()
-        self.dt_alter()
+        lot1=Lottery(self.driver)
+        lot1.click_quickSubmint_btn()
+        self.click_ok_btn()
         time.sleep(1)
         self.input_loop()
         self.click_ok_btn()
         self.waitMoretimesBtnToBeVisable()
-        # self.click_cancel_btn()

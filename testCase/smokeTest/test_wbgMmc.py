@@ -1,24 +1,34 @@
 # coding=utf-8
 from selenium import webdriver
 from Resouce.wbgmmcPage import WBGMmc
-import unittest,time
+from Resouce.loginPage import LoginPage
+from Resouce.lotteryPage import Lottery
+from Resouce.betPage import Bet
+import unittest
 from mylog import *
 
 class TestWBGMmc(unittest.TestCase):
     def setUp(self):
         logger.info("------秒秒彩下注------")
         self.driver = webdriver.Chrome()
+
     def test_wbgMmcBetting(self):
         '''WBG秒秒彩-后三-复式'''
+        login1=LoginPage(self.driver)
+        login1.login()
+
         wbg=WBGMmc(self.driver)
-        wbg.login()
         wbg.wbgMmcBetting()
         wbg.click_cancel_btn()
-        wbg.click_theNewestTime()
-        bid1 = wbg.get_bettingId()
-        wbg.open_url(wbg.base_url+wbg.url_cpBetting)
-        wbg.click_theFirstTime()
-        bid2 = wbg.get_bettingId()
+
+        lot1=Lottery(self.driver)
+        lot1.click_theNewestTime()
+        bid1 = lot1.get_bettingId()
+
+        bet1=Bet(self.driver)
+        wbg.open_url(wbg.base_url+bet1.url_cpBetting)
+        bet1.click_theFirstTime()
+        bid2 = lot1.get_bettingId()
         logger.info("\n下注注单号: %s \n生成订单号: %s"%(bid1,bid2))
         assert (bid1 == bid2)
 

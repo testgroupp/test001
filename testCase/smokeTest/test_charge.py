@@ -3,6 +3,8 @@ from selenium import webdriver
 from Resouce.chargePage import ChargePage
 import unittest
 from mylog import *
+from Resouce.loginPage import LoginPage
+
 class TestCharge(unittest.TestCase):
     def setUp(self):
         logger.info("------充值------")
@@ -10,8 +12,10 @@ class TestCharge(unittest.TestCase):
 
     def test_charge(self):
         '''充值'''
+        login1=LoginPage(self.driver)
+        login1.login()
+
         charge1=ChargePage(self.driver)
-        charge1.login()
         charge1.goto_charge()
         charge1.charge()
         text = self.driver.title

@@ -1,10 +1,11 @@
 #coding=utf-8
 
-from Resouce.txffcPage import Bet
+from Resouce.baseobject import BaseObject
 from selenium.webdriver.common.by import By
+from Resouce.lotteryPage import Lottery
 import time
 
-class LotteryDraw(Bet):
+class LotteryDraw(BaseObject):
     """
     开奖
     """
@@ -16,12 +17,13 @@ class LotteryDraw(Bet):
 
     #第一条投注记录中奖情况文本
     theFirtStatu=(By.XPATH,'//ul[@class="js-recency-list"]/li[1]//*[text()="未开奖"]')
+    # 等待开奖
+    def waitToLotteryDraw(self):
+        self.is_not_visble(180, self.theFirtStatu)
+        time.sleep(1)
+
     #开奖后的第一条投注记录
     statuLater=(By.XPATH,'//ul[@class="js-recency-list"]/li[1]//span[contains(@class,"status")]')
-    #等待开奖
-    def waitToLotteryDraw(self):
-        self.is_not_visble(180,self.theFirtStatu)
-        time.sleep(1)
     #获取开奖后第一条投注记录中的中奖金额
     def get_bonusLater(self):
         el=self.get_element(self.statuLater)
@@ -30,13 +32,12 @@ class LotteryDraw(Bet):
 
     #开奖流程
     def lotteryDraw(self):
-        # self.open_url(self.base_url)
-        self.choiceAll(9)
-        self.click_aaNumber_btn()
-        # self.dt_alter()
-        self.click_submit_now_btn()
+        lot1=Lottery(self.driver)
+        lot1.choiceAll(9)
+        lot1.click_aaNumber_btn()
+        lot1.click_submit_now_btn()
         time.sleep(0.5)
         self.click_ok_btn()
-        self.wait_alertToBeVisble()
+        lot1.wait_alertToBeVisble()
         time.sleep(2)
         self.waitToLotteryDraw()

@@ -1,6 +1,7 @@
 # coding=utf-8
 from selenium import webdriver
 from Resouce.withdrawPage import Withdraw
+from Resouce.loginPage import LoginPage
 import unittest
 from mylog import *
 
@@ -11,9 +12,10 @@ class TestWithdraw(unittest.TestCase):
 
     def test_withdraw(self):
         '''提现'''
-        withdraw1=Withdraw(self.driver)
-        withdraw1.login()
+        login1=LoginPage(self.driver)
+        login1.login()
 
+        withdraw1=Withdraw(self.driver)
         withdraw1.withdraw()
         msg=withdraw1.getMsg()
         logger.info("提示信息: %s" %msg)
