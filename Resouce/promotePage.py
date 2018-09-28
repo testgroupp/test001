@@ -1,9 +1,9 @@
 #coding=utf-8
 
-from Resouce.betting import Betting
+from Resouce.lotteryPage import Lottery
 from selenium.webdriver.common.by import By
 import time,random,string
-class Promote(Betting):
+class Promote(Lottery):
     """
     推广页面
     """
@@ -26,6 +26,11 @@ class Promote(Betting):
     def input_linkname(self):
         self.get_element(self.linkname_input).clear()
         self.send_keys_text(self.linkname_input,self.ln)
+    #玩家单选按钮
+    radio_player=(By.XPATH,'//*[@id="admin_report"]//label[2]/input[@name="linkType"]')
+    #点击玩家单选按钮
+    def click_radio_player(self):
+        self.click_element(self.radio_player)
     #生成链接按钮
     createlink_btn=(By.LINK_TEXT,'生成链接')
     #点击生成链接按钮
@@ -44,5 +49,6 @@ class Promote(Betting):
         self.goto_promote()
         self.click_addLink_btn()
         self.input_linkname()
+        self.click_radio_player()
         self.click_createlink_btn()
         self.waitLinkAlerToBeVisble()

@@ -1,11 +1,11 @@
 #coding=utf-8
 
-from Resouce.betting import Betting
+from Resouce.lotteryPage import Lottery
 from selenium.webdriver.common.by import By
 from decimal import Decimal
 import time,random
 
-class WBGMmc(Betting):
+class WBGMmc(Lottery):
     '''
     WBG秒秒彩
     '''

@@ -1,9 +1,9 @@
 #coding=utf-8
 
-from Resouce.betting import Betting
+from Resouce.lotteryPage import Lottery
 from selenium.webdriver.common.by import By
 import time,random
-class Withdraw(Betting):
+class Withdraw(Lottery):
     """
     提现页面
     """

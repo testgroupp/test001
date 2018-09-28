@@ -1,9 +1,9 @@
 #coding=utf-8
 
-from Resouce.betting import Betting
+from Resouce.lotteryPage import Lottery
 from selenium.webdriver.common.by import By
 import random
-class Reg(Betting):
+class Reg(Lottery):
     """
     注册页面
     """

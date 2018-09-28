@@ -4,7 +4,7 @@ from Resouce.loginPage import LoginPage
 from selenium.webdriver.common.by import By
 import time
 from mylog import *
-class Betting(LoginPage):
+class Lottery(LoginPage):
     """
     彩票投注相关 共用元素及方法
     """
@@ -81,12 +81,11 @@ class Betting(LoginPage):
         return  seconds
 
 
-    #开售提示:空文本
-    # OpenAlert=(By.XPATH,'//*[@class="js-issue-wrap issue fl"]/div[2]/span[not(text())]')
-    OpenAlert=(By.XPATH,'//*text()="等待开售"')
+    #等待开售提示
+    OpenAlert=(By.XPATH,"//div[contains(@class,'js-clock clock cl-count')]")
     #等待开盘
     def waitOpen(self):
-        self.is_not_visble(30,self.OpenAlert)
+        self.is_visible(30,self.OpenAlert)
 
     #点击快速投注按钮
     def click_quickSubmint_btn(self):
