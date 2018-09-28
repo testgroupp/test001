@@ -4,6 +4,7 @@ from Resouce.loginPage import LoginPage
 from selenium.webdriver.common.by import By
 import time
 from mylog import *
+
 class Lottery(LoginPage):
     """
     彩票投注相关 共用元素及方法
