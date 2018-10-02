@@ -9,7 +9,6 @@ class BeginCase(unittest.TestCase):
         pass
     def tearDown(self):
         pass
-
     def test_begintCase(self):
         logger.info("--------------------------------------------------------------")
         logger.info("-------------------------开始执行用例-------------------------")

@@ -1,6 +1,6 @@
 import logging
 import sys,time
-# 创建logger
+
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 # 创建handler，写入日志文件
