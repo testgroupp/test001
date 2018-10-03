@@ -7,8 +7,7 @@ from email.mime.text import MIMEText  #邮件内容
 from email.mime.multipart import MIMEMultipart  #附件
 from config import config_mail
 from config import config_report
-
-now=time.strftime("%Y%m%d_%H%M")
+from mylog import now
 
 def runTestsToReport():
     # 构造测试集
@@ -66,16 +65,18 @@ def send_mail(report_file,log_file):
     except smtplib.SMTPException as e:
         print("邮件未发送：", e)
 
-#邮件发送最新报告及日志
+#邮件发送报告及日志
 def send_ReportAndLog():
     # 报告目录
-    report_dir =sys.path[1]+ '\\Result\\reports'
-    list =os.listdir(report_dir)[-1]
-    file_report=report_dir+"\\"+list
+    # report_dir =sys.path[1]+ '\\Result\\reports'
+    # list =os.listdir(report_dir)[-1]
+    # file_report=report_dir+"\\"+list
     #日志目录
-    log_dir = sys.path[1] + '\\Result\\logs'
-    list_log = os.listdir(log_dir)[-1]
-    file_log = log_dir + '\\' + list_log
+    # log_dir = sys.path[1] + '\\Result\\logs'
+    # list_log = os.listdir(log_dir)[-1]
+    # file_log = log_dir + '\\' + list_log
+    file_report=sys.path[1]+ '\\Result\\reports\\'+now+'.html'
+    file_log=sys.path[1]+ '\\Result\\logs\\'+now+'.log'
     send_mail(file_report,file_log)
 
 if __name__ == '__main__':

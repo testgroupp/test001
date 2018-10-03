@@ -4,7 +4,7 @@ import sys,time
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 # 创建handler，写入日志文件
-now=time.strftime("%Y%m%d_%H%M")
+now=time.strftime("%Y%m%d_%H%M%S")
 fh = logging.FileHandler(sys.path[1]+'\\Result\\logs\\'+ now +'.log')
 fh.setLevel(logging.INFO)
 # 创建handler，输出到控制台
