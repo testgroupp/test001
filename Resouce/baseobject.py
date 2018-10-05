@@ -5,20 +5,30 @@ from selenium.webdriver.support import expected_conditions as EC
 from mylog import *
 import sys
 from selenium.webdriver.common.by import By
-from config import config_login
+from config.config_alltest import *
 
 class BaseObject(object):
     """
     基类：元素定位方法、及元素操作
     """
 
-    # 平台首页台地址及登录账号密码
-    base_url = config_login.base_url
-    username = config_login.username
-    password = config_login.password
-
     def __init__(self,driver):
         self.driver=driver
+        # 平台首页台地址及登录账号密码
+        self.plat = self.get_config(platform)
+        self.base_url = self.plat['base_url']
+        self.username = self.plat['username']
+        self.password = self.plat['password']
+
+    def get_config(self,p):
+        dic = None
+        if 'm' and 'd' in p.lower():
+            dic = dic_md
+        elif 'm' and 'c' in p.lower():
+            dic = dic_mc
+        else:
+            logger.info("-------------------平台名输入错误！！！--------------------------")
+        return dic
 
     def get_element(self,loc):
         """

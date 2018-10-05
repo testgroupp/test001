@@ -5,18 +5,27 @@ import sys,os
 import smtplib #邮件模块
 from email.mime.text import MIMEText  #邮件内容
 from email.mime.multipart import MIMEMultipart  #附件
-from config import config_mail
-from config import config_report
-from mylog import now
+from mylog import *
+from config.config_alltest import *
+
+def get_config( platform):
+    dic=None
+    if  'm' and 'd' in platform.lower():
+        dic=dic_md
+    elif  'm' and 'c' in platform.lower():
+        dic=dic_mc
+    else:
+        logger.info("-------------------平台名输入错误！！！--------------------------")
+    return dic
 
 def runTestsToReport():
     # 构造测试集
     suite = unittest.TestSuite()
     # 定义测试文件查找目录
-    dir =config_report.dir
+    dir = sys.path[1] + "\\testCase"
     # 定义discover方法的参数
     discover = unittest.defaultTestLoader.discover(dir,
-                                                   pattern=config_report.pattern,  # 匹配测试文件
+                                                   pattern='test_reg.py',  # 匹配测试文件
                                                    top_level_dir=None)
     #方法筛选出来的用例，循环添加到测试套件中
     for test_suite in discover:
@@ -26,7 +35,7 @@ def runTestsToReport():
     fp = open(filename, 'wb')  # r只读   wb:读写
     # 定义测试报告
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,  # 指定测试报告文件
-                                           title=config_report.title,  # 报告标题
+                                           title=plat['ReportTitle'], # 报告标题
                                            description="用例执行情况")  # 报告副标题
     # 执行用例
     runner.run(suite)
@@ -35,13 +44,16 @@ def runTestsToReport():
 #写邮件
 def send_mail(report_file,log_file):
     # 第三方服务器设置
-    sender =config_mail.sender
-    password = config_mail.password
-    receiver=config_mail.receiver
+    sender = 'delf@networkws.com'
+    password = 'lxyjhhxpwsxcztbn'
+    # 收件人
+    receiver = ['delf@networkws.com']
+    # receiver = ['delf@networkws.com', 'hiro@infinitesys.my', 'muse@networkws.com', 'demong@networkws.com', 'scki@networkws.com']
 
     msg = MIMEMultipart()  # 创建一个带附件的邮件实例
-    msg['Subject'] =config_mail.Subject + "冒烟测试报告" + now
-    msg['From'] = sender
+    msg['Subject'] =plat['MailSubject'] + now
+    msg['From'] =sender
+
     msg['To'] = ";".join(receiver)
     # 邮件正文内容
     content='<h1><font color="red">报告详情见附件(下载查阅效果更佳)</font><h1/>'
@@ -67,18 +79,11 @@ def send_mail(report_file,log_file):
 
 #邮件发送报告及日志
 def send_ReportAndLog():
-    # 报告目录
-    # report_dir =sys.path[1]+ '\\Result\\reports'
-    # list =os.listdir(report_dir)[-1]
-    # file_report=report_dir+"\\"+list
-    #日志目录
-    # log_dir = sys.path[1] + '\\Result\\logs'
-    # list_log = os.listdir(log_dir)[-1]
-    # file_log = log_dir + '\\' + list_log
     file_report=sys.path[1]+ '\\Result\\reports\\'+now+'.html'
     file_log=sys.path[1]+ '\\Result\\logs\\'+now+'.log'
     send_mail(file_report,file_log)
 
 if __name__ == '__main__':
+    plat = get_config(platform)
     runTestsToReport()
     send_ReportAndLog()
