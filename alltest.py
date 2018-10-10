@@ -10,7 +10,9 @@ from config.config_alltest import *
 
 def get_config( platform):
     dic=None
-    if  'm' and 'd' in platform.lower():
+    if 'hbmc' in platform.lower():
+        dic=dic_hbmc
+    elif  'm' and 'd' in platform.lower():
         dic=dic_md
     elif  'm' and 'c' in platform.lower():
         dic=dic_mc
@@ -25,7 +27,7 @@ def runTestsToReport():
     dir = sys.path[1] + "\\testCase"
     # 定义discover方法的参数
     discover = unittest.defaultTestLoader.discover(dir,
-                                                   pattern='test_reg.py',  # 匹配测试文件
+                                                   pattern='test_*.py',  # 匹配测试文件
                                                    top_level_dir=None)
     #方法筛选出来的用例，循环添加到测试套件中
     for test_suite in discover:
@@ -47,8 +49,8 @@ def send_mail(report_file,log_file):
     sender = 'delf@networkws.com'
     password = 'lxyjhhxpwsxcztbn'
     # 收件人
-    receiver = ['delf@networkws.com']
-    # receiver = ['delf@networkws.com', 'hiro@infinitesys.my', 'muse@networkws.com', 'demong@networkws.com', 'scki@networkws.com']
+    # receiver = ['delf@networkws.com']
+    receiver = ['delf@networkws.com', 'hiro@infinitesys.my', 'muse@networkws.com', 'demong@networkws.com', 'scki@networkws.com']
 
     msg = MIMEMultipart()  # 创建一个带附件的邮件实例
     msg['Subject'] =plat['MailSubject'] + now

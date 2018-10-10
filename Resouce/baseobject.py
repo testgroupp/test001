@@ -22,7 +22,9 @@ class BaseObject(object):
 
     def get_config(self,p):
         dic = None
-        if 'm' and 'd' in p.lower():
+        if 'hbmc' in platform.lower():
+            dic = dic_hbmc
+        elif 'm' and 'd' in p.lower():
             dic = dic_md
         elif 'm' and 'c' in p.lower():
             dic = dic_mc
@@ -180,7 +182,7 @@ class BaseObject(object):
         :param cpGame: 彩票游戏名称
         :return:
         """
-        if self.base_url == "http://www.mochen111.com/":
+        if self.base_url in( "http://www.mochen111.com/","http://www.mochen333.com/"):
             cp = self.driver.find_element(By.XPATH, "//div[text()='%s']" % (cpGame))
             dlt = cp.get_attribute("data-lt")
             dcls = cp.get_attribute("data-lt-cls")

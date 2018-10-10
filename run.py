@@ -1,24 +1,52 @@
 #coding=utf-8
-import os,sys
-import multiprocessing
+import os,sys,time
+import threading
+
+def change_config():
+    f = open(sys.path[1]+'\\config\\'+'config_alltest.py', 'r+',encoding='utf-8')
+    sk = 0
+    for line in f.readlines():
+        if 'mc' in line:
+            line_new = line.replace('mc', 'md')
+            f.seek(sk - 1, 0)
+            f.write('\n' + line_new)
+            break
+        else:
+            sk = sk + len(line)
+    f.close()
+
+def undo_config():
+    f = open(sys.path[1]+'\\config\\'+'config_alltest.py', 'r+',encoding='utf-8')
+    sk = 0
+    for line in f.readlines():
+        if 'md' in line:
+            line_new = line.replace('md', 'mc')
+            f.seek(sk - 1, 0)
+            f.write('\n' + line_new)
+            break
+        else:
+            sk = sk + len(line)
+    f.close()
+
 
 def runtest(filename):
-
-    print ("开始运行脚本:")
-    os.chdir(sys.path[1])
-    os.system('Python '+ filename)  # 执行脚本
-    print ("运行完成退出")
-
-list={"alltest.py","alltest1.py"}
-thread=[]
-
-#创建线程
-for file in list:
-    t=multiprocessing.Process(target=runtest,args=(file,))
-    thread.append(t)
+    os.system('Python '+ filename)
 
 if __name__=='__main__':
-    for i in thread:
-        i.start()
-    for i in thread:
-        i.join()
+    # runtest('alltest.py')
+    # change_config()
+    # runtest('alltest.py')
+    # undo_config()
+    pro=[]
+    p1=threading.Thread(target=runtest,args=('alltest.py',))
+    pro.append(p1)
+    p2=threading.Thread(target=runtest,args=('alltest.py',))
+    pro.append(p2)
+
+    for p in pro:
+        p.start()
+        change_config()
+        time.sleep(3)
+    for p in pro:
+        p.join()
+    undo_config()
