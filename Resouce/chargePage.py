@@ -7,11 +7,17 @@ class ChargePage(BaseObject):
     """
     充值页面
     """
-    #金额输入框
-    amounts_input=(By.ID,"amounts")
+    #最低充值金额
+    min_charge=(By.XPATH,'//*[contains(@class,"aliMin min red")]')
+    #获取最低充值金额
+    def get_min_change(self):
+        return int(self.get_text(self.min_charge))+1
+
+    # 金额输入框
+    amounts_input = (By.ID, "amounts")
     # 输入充值金额
     def input_charge(self):
-        self.send_keys_text(self.amounts_input, 1000)
+        self.send_keys_text(self.amounts_input, self.get_min_change())
         time.sleep(1)
 
     #马上充值按钮

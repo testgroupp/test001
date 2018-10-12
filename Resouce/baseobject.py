@@ -35,7 +35,7 @@ class BaseObject(object):
     def get_element(self,loc):
         """
         定位一个元素并返回
-        :param loc: 元素定位信息，无组格式
+        :param loc: 元素定位信息，元组格式
         :return:
         """
         el=None
@@ -49,7 +49,7 @@ class BaseObject(object):
     def get_elements(self,loc):
         """
         定位一组元素并返回
-        :param loc: 元素定位信息，无组格式
+        :param loc: 元素定位信息，元组格式
         :return:
         """
         el=None
