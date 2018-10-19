@@ -26,9 +26,9 @@ class TestTraceIcon(unittest.TestCase):
             ti.get_screenshot()
             self.assertEqual("订单提交成功！",msg)
 
-        lot1=LotteryDraw(self.driver)
-        lot1.waitToLotteryDraw()
-        time.sleep(30)
+        t=ti.turnToSeconds()+60
+        logger.info("等待追号:%s秒" %t)
+        time.sleep(t)
 
         ti.goto_cp_toaddNumber()
         ti.click_theFristAddNumberRecord()

@@ -191,7 +191,6 @@ class BaseObject(object):
             cp = self.driver.find_element(By.XPATH, "//*[@class='lottery-text' and text()='%s']/.." % (cpGame))
             url_cp = cp.get_attribute("href")
 
-        print(url_cp)
         return url_cp
 
     # 提示框中确定按钮
