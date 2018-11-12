@@ -15,6 +15,7 @@ class MmcDayReport(BaseObject):
     # 跳转到日报表
     def goto_dayReport(self):
         self.open_url(self.base_url+self.day_url)
+        self.is_visible(30, (By.XPATH, '//*[@id="admin_report"]/div[2]/div[4]/ul[2]/li[1]/span[1]'))
 
     #日报表字段集合
     jihe=(By.XPATH,'//*[@id="admin_report"]/div[2]/div[4]/ul[1]/li/span')

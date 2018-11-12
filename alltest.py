@@ -88,4 +88,4 @@ def send_ReportAndLog():
 if __name__ == '__main__':
     plat = get_config(platform)
     runTestsToReport()
-    send_ReportAndLog()
+    # send_ReportAndLog()

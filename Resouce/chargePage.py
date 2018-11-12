@@ -11,7 +11,7 @@ class ChargePage(BaseObject):
     min_charge=(By.XPATH,'//*[contains(@class,"aliMin min red")]')
     #获取最低充值金额
     def get_min_change(self):
-        return int(self.get_text(self.min_charge))
+        return int(self.get_text(self.min_charge)) + 100
 
     # 金额输入框
     amounts_input = (By.ID, "amounts")

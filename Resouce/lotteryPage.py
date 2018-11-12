@@ -44,12 +44,12 @@ class Lottery(BaseObject):
 
     #投注记录最新一条投注信息：参与时间
     theNewestTime = (By.XPATH, '//*[@class="js-recency-list"]/li[1]/span[1]')
-    # 点击最新一条投注信息的参与时间
+    # 点击最新一条投注信息的参与时间并等待弹框出现
     def click_theNewestTime(self):
         el = self.get_element(self.theNewestTime)
         self.driver.execute_script("arguments[0].scrollIntoView();", el)
         self.click_element(self.theNewestTime)
-        time.sleep(1)
+        self.is_visible(10,self.bettingId)
 
     #弹框中注单编号
     bettingId=(By.XPATH,'//*[@id="content:recency-details"]/table/tbody/tr[1]/td/em')

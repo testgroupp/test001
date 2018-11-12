@@ -2,10 +2,24 @@
 
 from Resouce.baseobject import BaseObject
 from selenium.webdriver.common.by import By
+from config.config_alltest import *
+from mylog import *
 class Withdraw(BaseObject):
     """
     提现页面
     """
+    def get_config(self,p):
+        dic = None
+        if 'hbmc' in platform.lower():
+            dic = dic_hbmc
+        elif 'm' and 'd' in p.lower():
+            dic = dic_md
+        elif 'm' and 'c' in p.lower():
+            dic = dic_mc
+        else:
+            logger.info("-------------------平台名输入错误！！！--------------------------")
+        return dic
+
     #提现页面地址
     withdraw_url="static/sobet/transaction-center.html#withdraw"
     # 跳转到提现页面
@@ -22,7 +36,7 @@ class Withdraw(BaseObject):
     payPassword_input=(By.ID,"payPassword")
     # 输入资金密码
     def input_payPassword(self):
-        self.send_keys_text(self.payPassword_input, "mc123456")
+        self.send_keys_text(self.payPassword_input, self.get_config(platform)['payPassword'])
 
     #申请提现按钮
     submit_btn=(By.XPATH,'//*[@value="申请提现"]')

@@ -30,7 +30,7 @@ class TestBetting(unittest.TestCase):
         except:
             lot1.get_screenshot()
             self.assertEqual("订单提交成功！",msg)
-        time.sleep(2)
+        time.sleep(3)
         lot1.click_theNewestTime()
         bid1=lot1.get_bettingId()
 

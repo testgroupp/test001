@@ -16,7 +16,7 @@ class TeamReport(BaseObject):
     #跳转到团队报表
     def goto_teamReport(self):
         self.open_url(self.base_url+self.team_url)
-
+        self.is_visible(30, (By.XPATH, '//*[@id="admin_report"]/div[1]/div[5]/ul[2]/li[1]/span[1]'))
     jihe = (By.XPATH, '//*[@id="admin_report"]/div[1]/div[5]/ul[1]/li/span')
     # 获取投注字段下标
     def get_betAmout_Id(self):

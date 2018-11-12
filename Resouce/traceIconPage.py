@@ -55,6 +55,7 @@ class TraceIcon(BaseObject):
     #跳转到彩票追号页面
     def goto_cp_toaddNumber(self):
         self.open_url(self.base_url+self.cp_toaddNumber_url)
+        self.is_visible(30,self.theFirstAddNumRecord)
 
     #彩票追号页面第一条记录
     theFirstAddNumRecord=(By.XPATH,'//*[@id="admin_history"]/div[3]/div[5]/ul/li[1]')

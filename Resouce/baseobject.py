@@ -182,7 +182,7 @@ class BaseObject(object):
         :param cpGame: 彩票游戏名称
         :return:
         """
-        if self.base_url in( "http://www.mochen111.com/","http://www.mochen333.com/"):
+        if self.base_url in( "http://www.mochen111.com/","http://www.mochen333.com/",'http://www.mochen111.net/'):
             cp = self.driver.find_element(By.XPATH, "//div[text()='%s']" % (cpGame))
             dlt = cp.get_attribute("data-lt")
             dcls = cp.get_attribute("data-lt-cls")
