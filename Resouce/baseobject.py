@@ -22,7 +22,7 @@ class BaseObject(object):
 
     def get_config(self,p):
         dic = None
-        if 'hbmc' in platform.lower():
+        if 'hbmc' in p.lower():
             dic = dic_hbmc
         elif 'm' and 'd' in p.lower():
             dic = dic_md
