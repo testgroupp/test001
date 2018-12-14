@@ -1,6 +1,6 @@
 #coding=utf-8
 
-platform='md' #平台名称
+platform='mc' #平台名称
 #摩登验收
 dic_md={'base_url':"http://www.mod168.space/",
            'username': "mdceshi01",
