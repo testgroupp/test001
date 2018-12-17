@@ -11,7 +11,9 @@ class TraceIcon(BaseObject):
     分分彩追号
     """
     # 我要追号按钮
-    toAddNumber_btn = (By.XPATH, '//*[text()="我要追号"]')
+    # //*[@id="lottery"]//span[contains(@class,"mode")]/label[last()]
+    toAddNumber_btn = (By.XPATH,'//*[contains(text(),"我要追号")]')
+    # toAddNumber_btn = (By.XPATH, '//*[text()="我要追号"]')
     # 点击我要追号按钮
     def click_toAddNumber_btn(self, ):
         self.click_element(self.toAddNumber_btn)
@@ -95,5 +97,3 @@ class TraceIcon(BaseObject):
         self.click_traceSubmit_btn()
         self.click_ok_btn()
         self.waitTraceToVisble()
-
-
