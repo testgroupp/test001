@@ -5,12 +5,17 @@ import unittest
 from mylog import *
 from Resouce.lotteryDrawPage import LotteryDraw
 from Resouce.loginPage import LoginPage
+from Libs.excel_util import ReadExcel
 
 class TestTraceIcon(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------追号------")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_traceIcon'),'test_traceIcon:off')
     def test_traceIcon(self):
         '''追号：腾讯分分彩-后三-复式'''
         login1=LoginPage(self.driver)

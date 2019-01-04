@@ -5,12 +5,17 @@ import unittest,random
 from Resouce.loginPage import LoginPage
 from mylog import *
 from decimal import Decimal
+from Libs.excel_util import ReadExcel
 
 class TestTransfer(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------转账------")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_tranfer'),'test_tranfer:off')
     def test_tranfer(self):
         '''转账'''
         login1=LoginPage(self.driver)

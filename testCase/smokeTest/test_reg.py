@@ -4,12 +4,17 @@ from Resouce.regPage import Reg
 from Resouce.loginPage import LoginPage
 import unittest
 from mylog import *
+from Libs.excel_util import ReadExcel
 
 class TestReg(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------注册------")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_reg'),'test_reg:off')
     def test_reg(self):
         '''注册'''
         login1=LoginPage(self.driver)

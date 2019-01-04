@@ -5,12 +5,17 @@ from Resouce.loginPage import LoginPage
 from Resouce.lotteryPage import Lottery
 import unittest
 from mylog import *
+from Libs.excel_util import ReadExcel
 
 class TestBetting(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------传统彩票下注------")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_betting'),'test_betting:off')
     def test_betting(self):
         '''下注：腾讯分分彩-后三-复式'''
         login1=LoginPage(self.driver)

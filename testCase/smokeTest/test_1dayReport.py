@@ -4,12 +4,17 @@ from Resouce.dayReportPage import DayReport
 from Resouce.loginPage import LoginPage
 import unittest
 from mylog import *
+from Libs.excel_util import ReadExcel
 
 class TestDayReport(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------传统彩票日报表-----")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_dayReport'),'test_dayReport:off')
     def test_dayReport(self):
         '''日报表'''
         login1=LoginPage(self.driver)

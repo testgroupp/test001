@@ -4,12 +4,17 @@ from Resouce.promotePage import Promote
 from Resouce.loginPage import LoginPage
 import unittest
 from mylog import *
+from Libs.excel_util import ReadExcel
 
 class TestPromote(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------推广链接------")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_promote'),'test_promote:off')
     def test_promote(self):
         '''推广链接'''
         login1=LoginPage(self.driver)

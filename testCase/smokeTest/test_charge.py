@@ -4,12 +4,17 @@ from Resouce.chargePage import ChargePage
 import unittest
 from mylog import *
 from Resouce.loginPage import LoginPage
+from Libs.excel_util import ReadExcel
 
 class TestCharge(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------充值------")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_charge'),'test_charge:off')
     def test_charge(self):
         '''充值'''
         login1=LoginPage(self.driver)

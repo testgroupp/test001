@@ -5,12 +5,17 @@ import unittest
 from decimal import Decimal
 from Resouce.loginPage import LoginPage
 from mylog import *
+from Libs.excel_util import ReadExcel
 
 class TestLotteryDraw(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------开奖------")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_lotteryDraw'),'test_lotteryDraw:off')
     def test_lotteryDraw(self):
         '''开奖：腾讯分分彩-后三-复式'''
         login1=LoginPage(self.driver)

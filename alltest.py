@@ -46,11 +46,11 @@ def runTestsToReport():
 #写邮件
 def send_mail(report_file,log_file):
     # 第三方服务器设置
-    sender = 'delf@networkws.com'
+    sender = 'delf@octaness.com'
     password = 'lxyjhhxpwsxcztbn'
     # 收件人
-    # receiver = ['delf@networkws.com']
-    receiver = ['delf@networkws.com', 'hiro@infinitesys.my', 'muse@networkws.com', 'demong@networkws.com', 'scki@networkws.com']
+    # receiver = ['delf@octaness.com']
+    receiver = ['delf@octaness.com', 'hiro@octaness.com', 'muse@octaness.com', 'demong@octaness.com', 'scki@octaness.com','maydee@octaness.com']
 
     msg = MIMEMultipart()  # 创建一个带附件的邮件实例
     msg['Subject'] =plat['MailSubject'] + now

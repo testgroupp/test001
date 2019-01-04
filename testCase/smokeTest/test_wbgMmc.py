@@ -6,12 +6,17 @@ from Resouce.lotteryPage import Lottery
 from Resouce.betPage import Bet
 import unittest
 from mylog import *
+from Libs.excel_util import ReadExcel
 
 class TestWBGMmc(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------秒秒彩下注------")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_wbgMmcBetting'),'test_wbgMmcBetting:off')
     def test_wbgMmcBetting(self):
         '''WBG秒秒彩-后三-复式'''
         login1=LoginPage(self.driver)

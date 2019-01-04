@@ -4,12 +4,17 @@ from Resouce.withdrawPage import Withdraw
 from Resouce.loginPage import LoginPage
 import unittest
 from mylog import *
+from Libs.excel_util import ReadExcel
 
 class TestWithdraw(unittest.TestCase):
+
+    cases = ReadExcel(sys.path[1] + '\\Data\\TestCaseON-OFF.xlsx','smokeTest')
+
     def setUp(self):
         logger.info("------提现------")
         self.driver = webdriver.Chrome()
 
+    @unittest.skipUnless(cases.excel_case_switch('test_withdraw'),'test_withdraw:off')
     def test_withdraw(self):
         '''提现'''
         login1=LoginPage(self.driver)
