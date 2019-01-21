@@ -1,18 +1,19 @@
-#coding=utf-8
-from selenium import webdriver
-import time,requests
+import winsound
+from time import sleep, localtime
 
-driver = webdriver.Chrome()
-driver.maximize_window()
-driver.get('http://www.mochen111.net')
-driver.find_element_by_id('user-name').send_keys('delf002')
-driver.find_element_by_id('password').send_keys('abc123')
-driver.find_element_by_xpath('//div[@class="btn fr"]').click()
-time.sleep(2)
-driver.get('http://www.mochen111.net/lottery#ssc-TXFFC')
-time.sleep(3)
-while 1:
-    r = requests.get('http://www.mochen111.net/lottery/api/call/v1/lottery/times')
-    t = r.json()['result']['time']['TXFFC']
-    print(t)
-    time.sleep(0.5)
+
+def beep():
+    if m == 59:
+        winsound.Beep(1000, 500)  # one long beep
+    elif m == 29:
+        winsound.Beep(1000, 200)  # two short beep
+        winsound.Beep(1000, 200)  # two short beep
+
+
+if __name__ == "__main__":
+    while True:
+        now = localtime()
+        m = now.tm_min
+        s = now.tm_sec
+        sleep(60 - s)  # refresh every minute.    8880930.9630
+        beep()
