@@ -10,9 +10,7 @@ from config.config_alltest import *
 
 def get_config( platform):
     dic=None
-    if 'hbmc' in platform.lower():
-        dic=dic_hbmc
-    elif  'm' and 'd' in platform.lower():
+    if  'm' and 'd' in platform.lower():
         dic=dic_md
     elif  'm' and 'c' in platform.lower():
         dic=dic_mc
