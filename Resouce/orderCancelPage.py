@@ -37,7 +37,7 @@ class OrderCancel(BaseObject):
         time.sleep(0.5)
         self.click_ok_btn()
         lot1.wait_alertToBeVisble()
-        time.sleep(1)
+        time.sleep(3)
         self.click_orerCancel_btn()
         time.sleep(1)
         lot1.click_ok_btn()

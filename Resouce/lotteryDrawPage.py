@@ -9,8 +9,9 @@ class LotteryDraw(BaseObject):
     """
     开奖
     """
-    #奖金
-    bonus=(By.XPATH,'//span[contains(@class,"odds")]/select/option[1]')
+    #奖金组
+    bonus=(By.XPATH,'//*[contains(@class,"odds")]/select/option[1]')
+
     #获取奖金数额
     def get_bonusNum(self):
         return self.get_element(self.bonus).get_attribute("value")

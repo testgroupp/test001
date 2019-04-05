@@ -33,4 +33,4 @@ class LoginPage(BaseObject):
         self.input_unsername()
         self.input_password()
         self.click_loginbtn()
-        time.sleep(2)
+        time.sleep(3)

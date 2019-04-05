@@ -29,7 +29,7 @@ class TestOrderCancel(unittest.TestCase):
         except:
             oc.get_screenshot()
             self.assertEqual("撤单成功",msg)
-        time.sleep(2)
+        time.sleep(4)
         msg=oc.get_bt_con()
         logger.info("中奖情况：%s" %msg)
         try:
