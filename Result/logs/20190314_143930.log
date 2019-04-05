@@ -1,0 +1,35 @@
+【2019-03-14 14:40:02,531】【ERROR】【Message: invalid selector: Unable to locate an element with the xpath expression //*[@id="lottery"]/div[4]//dd[text()="<selenium.webdriver.remote.webelement.WebElement (session="e0e31c912405b0e3e44a54a15636379d", element="0.27446731495683796-2")>"] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//*[@id="lottery"]/div[4]//dd[text()="<selenium.webdriver.remote.webelement.WebElement (session="e0e31c912405b0e3e44a54a15636379d", element="0.27446731495683796-2")>"]' is not a valid XPath expression.
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+】
+【2019-03-14 14:40:02,945】【ERROR】【'NoneType' object has no attribute 'click'】
+【2019-03-14 14:40:04,231】【ERROR】【Message: invalid selector: Unable to locate an element with the xpath expression //*[@id="lottery"]//span[contains(@class,"mode")]/label[text()]="2元"] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//*[@id="lottery"]//span[contains(@class,"mode")]/label[text()]="2元"]' is not a valid XPath expression.
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+】
+【2019-03-14 14:40:04,664】【ERROR】【'NoneType' object has no attribute 'click'】
+【2019-03-14 14:40:08,221】【ERROR】【Message: invalid selector: Unable to locate an element with the xpath expression //*[@id="lottery"]/div[4]//dd[text()="<selenium.webdriver.remote.webelement.WebElement (session="e0e31c912405b0e3e44a54a15636379d", element="0.27446731495683796-55")>"] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//*[@id="lottery"]/div[4]//dd[text()="<selenium.webdriver.remote.webelement.WebElement (session="e0e31c912405b0e3e44a54a15636379d", element="0.27446731495683796-55")>"]' is not a valid XPath expression.
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+】
+【2019-03-14 14:40:08,607】【ERROR】【'NoneType' object has no attribute 'click'】
+【2019-03-14 14:40:09,307】【ERROR】【Message: invalid selector: Unable to locate an element with the xpath expression //*[@id="lottery"]//span[contains(@class,"mode")]/label[text()]="1元"] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//*[@id="lottery"]//span[contains(@class,"mode")]/label[text()]="1元"]' is not a valid XPath expression.
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+】
+【2019-03-14 14:40:09,685】【ERROR】【'NoneType' object has no attribute 'click'】
+【2019-03-14 14:40:13,273】【ERROR】【Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="lottery"]/div[contains(@class,"js-number")]/div//dd/i[text()="0"]"}
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+】
+【2019-03-14 14:40:13,669】【ERROR】【'NoneType' object has no attribute 'click'】
+【2019-03-14 14:40:14,200】【ERROR】【Message: invalid selector: Unable to locate an element with the xpath expression //*[@id="lottery"]//span[contains(@class,"mode")]/label[text()]="2角"] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//*[@id="lottery"]//span[contains(@class,"mode")]/label[text()]="2角"]' is not a valid XPath expression.
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+】
+【2019-03-14 14:40:14,571】【ERROR】【'NoneType' object has no attribute 'click'】

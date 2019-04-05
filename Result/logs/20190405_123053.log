@@ -1,0 +1,5 @@
+¡¾2019-04-05 12:30:53,942¡¿¡¾INFO¡¿¡¾------³·µ¥------¡¿
+¡¾2019-04-05 12:31:44,531¡¿¡¾ERROR¡¿¡¾Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@class="js-recency-list"]/li[1]//*[text()="³·µ¥"]"}
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+¡¿

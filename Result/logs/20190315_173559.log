@@ -1,0 +1,4 @@
+¡¾2019-03-15 17:37:06,391¡¿¡¾ERROR¡¿¡¾Message: unknown error: Element <i>...</i> is not clickable at point (581, 288). Other element would receive the click: <p class="paraphrase">...</p>
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+¡¿

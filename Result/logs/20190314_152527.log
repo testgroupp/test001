@@ -1,0 +1,12 @@
+¡¾2019-03-14 15:26:07,973¡¿¡¾ERROR¡¿¡¾Message: invalid selector: Unable to locate an element with the xpath expression //*[@id="lottery"]/div[4]//dd[text()="<selenium.webdriver.remote.webelement.WebElement (session="8336d281bf8572a313e5430acdfe3af7", element="0.258814348562868-2")>"] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//*[@id="lottery"]/div[4]//dd[text()="<selenium.webdriver.remote.webelement.WebElement (session="8336d281bf8572a313e5430acdfe3af7", element="0.258814348562868-2")>"]' is not a valid XPath expression.
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+¡¿
+¡¾2019-03-14 15:26:08,367¡¿¡¾ERROR¡¿¡¾'NoneType' object has no attribute 'click'¡¿
+¡¾2019-03-14 15:26:15,797¡¿¡¾ERROR¡¿¡¾Message: invalid selector: Unable to locate an element with the xpath expression //*[@id="lottery"]/div[4]//dd[text()="<selenium.webdriver.remote.webelement.WebElement (session="8336d281bf8572a313e5430acdfe3af7", element="0.258814348562868-56")>"] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//*[@id="lottery"]/div[4]//dd[text()="<selenium.webdriver.remote.webelement.WebElement (session="8336d281bf8572a313e5430acdfe3af7", element="0.258814348562868-56")>"]' is not a valid XPath expression.
+  (Session info: chrome=70.0.3538.110)
+  (Driver info: chromedriver=2.44.609538 (b655c5a60b0b544917107a59d4153d4bf78e1b90),platform=Windows NT 10.0.17134 x86_64)
+¡¿
+¡¾2019-03-14 15:26:16,186¡¿¡¾ERROR¡¿¡¾'NoneType' object has no attribute 'click'¡¿
